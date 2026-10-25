@@ -161,11 +161,10 @@
                 </a>
             </div>
 
-            <!-- IMAGEN PLACEHOLDER: Dispositivos o mockup de la app (Sugerido: 1000x600) -->
+            <!-- IMAGEN PLACEHOLDER: Dispositivos o mockup de la app -->
             <div class="mt-16 w-full max-w-4xl mx-auto animate-slide-up" style="animation-delay: 0.4s;">
                 <div class="relative rounded-2xl overflow-hidden border border-gray-800 shadow-2xl bg-gray-900 aspect-video flex items-center justify-center group">
-                    <!-- Instrucción para el usuario -->
-                    <img src="https://placehold.co/1000x600/1F2937/FBBF24?text=Reemplazar+con+Imagen+de+Dispositivos+(1000x600)" alt="Mockup Dispositivos" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    <img src="https://placehold.co/1000x562/1F2937/FBBF24?text=Reemplazar+con+Imagen+de+Dispositivos+(16:9)" alt="Mockup Dispositivos" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                 </div>
             </div>
 
@@ -183,8 +182,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Beneficio 1 -->
                 <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-                    <!-- PLACEHOLDER 400x300 -->
-                    <img src="https://placehold.co/400x300/111827/FBBF24?text=Imagen+Familia+(400x300)" alt="Calidad" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/400x300/111827/FBBF24?text=Imagen+Familia+(4:3)" alt="Calidad" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <i class="fas fa-tv text-3xl text-brand-accent mb-4"></i>
                         <h3 class="text-xl font-bold mb-2">Calidad 4K y Full HD</h3>
@@ -194,8 +192,7 @@
 
                 <!-- Beneficio 2 -->
                 <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-                    <!-- PLACEHOLDER 400x300 -->
-                    <img src="https://placehold.co/400x300/111827/FBBF24?text=Imagen+Multidispositivo+(400x300)" alt="Dispositivos" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/400x300/111827/FBBF24?text=Imagen+Multidispositivo+(4:3)" alt="Dispositivos" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <i class="fas fa-mobile-alt text-3xl text-brand-accent mb-4"></i>
                         <h3 class="text-xl font-bold mb-2">Multidispositivo</h3>
@@ -205,8 +202,7 @@
 
                 <!-- Beneficio 3 -->
                 <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-                    <!-- PLACEHOLDER 400x300 -->
-                    <img src="https://placehold.co/400x300/111827/FBBF24?text=Imagen+Negocio+(400x300)" alt="Revendedores" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/400x300/111827/FBBF24?text=Imagen+Negocio+(4:3)" alt="Revendedores" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <i class="fas fa-handshake text-3xl text-brand-accent mb-4"></i>
                         <h3 class="text-xl font-bold mb-2">Oportunidad de Negocio</h3>
@@ -443,19 +439,19 @@
     <script>
         // --- DATA DEL CSV ---
         const rawData = [
-            {"NOMBRE_PRODUCTO":"Plan Basic Menusal","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":10000,"PRECIO ARS":5250,"PRECIO SOLES":10,"PRECIO USD":"3.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_UOLUYCGLI7","LInk pago Paypal":"https://www.paypal.com/ncp/payment/Q549GKAHFC3BS"},
-            {"NOMBRE_PRODUCTO":"Plan Plus Mensual","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":15000,"PRECIO ARS":6800,"PRECIO SOLES":15,"PRECIO USD":"5.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_80GDQ76C4M","LInk pago Paypal":"https://www.paypal.com/ncp/payment/S8D8DLCLGF6UG"},
-            {"NOMBRE_PRODUCTO":"Plan Premium Mensual","DESCRIPCION":"Acceso a la plataforma para 3 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":20000,"PRECIO ARS":9000,"PRECIO SOLES":21,"PRECIO USD":"6.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_UGP9ZY4QDO","LInk pago Paypal":"https://www.paypal.com/ncp/payment/8WPNHPPJ9NESC"},
-            {"NOMBRE_PRODUCTO":"Plan Ultra Mensual","DESCRIPCION":"Acceso a la plataforma para 5 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":25000,"PRECIO ARS":11300,"PRECIO SOLES":26,"PRECIO USD":"8.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_OG728F4GF0","LInk pago Paypal":"https://www.paypal.com/ncp/payment/E3RQ2HXTQVM6C"},
-            {"NOMBRE_PRODUCTO":"Plan Basic Trimestral","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":25000,"PRECIO ARS":11300,"PRECIO SOLES":26,"PRECIO USD":"9.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_7UZGSVNH1X","LInk pago Paypal":"https://www.paypal.com/ncp/payment/8JDJ7LFDFR7JN"},
-            {"NOMBRE_PRODUCTO":"Plan Plus Trimestral","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":35000,"PRECIO ARS":17300,"PRECIO SOLES":40,"PRECIO USD":"13.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_9QIAMWPMEM","LInk pago Paypal":"https://www.paypal.com/ncp/payment/67MDH2T5RB39N"},
-            {"NOMBRE_PRODUCTO":"Plan Premium Trimestral","DESCRIPCION":"Acceso a la plataforma para 3 dispositivos por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":50000,"PRECIO ARS":24750,"PRECIO SOLES":53,"PRECIO USD":"16.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_KXUBW8HNAT","LInk pago Paypal":"https://www.paypal.com/ncp/payment/MNVU24C9P7A44"},
-            {"NOMBRE_PRODUCTO":"Plan Basic Semestral","DESCRIPCION":"Acceso para 1 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":45000,"PRECIO ARS":20300,"PRECIO SOLES":47,"PRECIO USD":"16.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_7LZDA4MBSS","LInk pago Paypal":"https://www.paypal.com/ncp/payment/LT774UU643RYN"},
-            {"NOMBRE_PRODUCTO":"Plan Plus Semestral","DESCRIPCION":"Acceso para 2 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":65000,"PRECIO ARS":29300,"PRECIO SOLES":68,"PRECIO USD":"22.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_IMX5HU2NVQ","LInk pago Paypal":"https://www.paypal.com/ncp/payment/9GGE2XB8PTE5S"},
-            {"NOMBRE_PRODUCTO":"Plan Premium Semestral","DESCRIPCION":"Acceso para 3 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":90000,"PRECIO ARS":45000,"PRECIO SOLES":95,"PRECIO USD":"30.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_V9G04A0L9W","LInk pago Paypal":"https://www.paypal.com/ncp/payment/UKV524XE9FPF2"},
-            {"NOMBRE_PRODUCTO":"Plan Basic Anual","DESCRIPCION":"Acceso para 1 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":85000,"PRECIO ARS":38300,"PRECIO SOLES":90,"PRECIO USD":"31.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_B8AXRH0UMD","LInk pago Paypal":"https://www.paypal.com/ncp/payment/689YE9Z48LU6W"},
-            {"NOMBRE_PRODUCTO":"Plan Plus Anual","DESCRIPCION":"Acceso para 2 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":110000,"PRECIO ARS":58500,"PRECIO SOLES":116,"PRECIO USD":"39.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_1K9C4OHI1M","LInk pago Paypal":"https://www.paypal.com/ncp/payment/QLP8EKVCNKSE8"},
-            {"NOMBRE_PRODUCTO":"Plan Premium Anual","DESCRIPCION":"Acceso para 3 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":160000,"PRECIO ARS":81000,"PRECIO SOLES":189,"PRECIO USD":"54.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_RW7Q3SNS64","LInk pago Paypal":"https://www.paypal.com/ncp/payment/JFHG5TCELFX4Y"},
+            {"NOMBRE_PRODUCTO":"Plan Basic Menusal","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":12000,"PRECIO ARS":5300,"PRECIO SOLES":12,"PRECIO USD":"3.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_UOLUYCGLI7","LInk pago Paypal":"https://www.paypal.com/ncp/payment/Q549GKAHFC3BS"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Mensual","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":17500,"PRECIO ARS":7500,"PRECIO SOLES":17.5,"PRECIO USD":"5.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_80GDQ76C4M","LInk pago Paypal":"https://www.paypal.com/ncp/payment/S8D8DLCLGF6UG"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Mensual","DESCRIPCION":"Acceso a la plataforma para 3 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":22500,"PRECIO ARS":9800,"PRECIO SOLES":22.5,"PRECIO USD":"6.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_UGP9ZY4QDO","LInk pago Paypal":"https://www.paypal.com/ncp/payment/8WPNHPPJ9NESC"},
+            {"NOMBRE_PRODUCTO":"Plan Ultra Mensual","DESCRIPCION":"Acceso a la plataforma para 5 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":28000,"PRECIO ARS":12000,"PRECIO SOLES":27.5,"PRECIO USD":"8.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_OG728F4GF0","LInk pago Paypal":"https://www.paypal.com/ncp/payment/E3RQ2HXTQVM6C"},
+            {"NOMBRE_PRODUCTO":"Plan Basic Trimestral","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":31500,"PRECIO ARS":13500,"PRECIO SOLES":31,"PRECIO USD":"9.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_7UZGSVNH1X","LInk pago Paypal":"https://www.paypal.com/ncp/payment/8JDJ7LFDFR7JN"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Trimestral","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":45500,"PRECIO ARS":19500,"PRECIO SOLES":45,"PRECIO USD":"13.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_9QIAMWPMEM","LInk pago Paypal":"https://www.paypal.com/ncp/payment/67MDH2T5RB39N"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Trimestral","DESCRIPCION":"Acceso a la plataforma para 3 dispositivos por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":57500,"PRECIO ARS":24800,"PRECIO SOLES":57,"PRECIO USD":"16.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_KXUBW8HNAT","LInk pago Paypal":"https://www.paypal.com/ncp/payment/MNVU24C9P7A44"},
+            {"NOMBRE_PRODUCTO":"Plan Basic Semestral","DESCRIPCION":"Acceso para 1 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":57500,"PRECIO ARS":24800,"PRECIO SOLES":57,"PRECIO USD":"16.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_7LZDA4MBSS","LInk pago Paypal":"https://www.paypal.com/ncp/payment/LT774UU643RYN"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Semestral","DESCRIPCION":"Acceso para 2 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":78500,"PRECIO ARS":33800,"PRECIO SOLES":77.5,"PRECIO USD":"22.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_IMX5HU2NVQ","LInk pago Paypal":"https://www.paypal.com/ncp/payment/9GGE2XB8PTE5S"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Semestral","DESCRIPCION":"Acceso para 3 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":105000,"PRECIO ARS":45000,"PRECIO SOLES":103,"PRECIO USD":"30.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_V9G04A0L9W","LInk pago Paypal":"https://www.paypal.com/ncp/payment/UKV524XE9FPF2"},
+            {"NOMBRE_PRODUCTO":"Plan Basic Anual","DESCRIPCION":"Acceso para 1 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":110000,"PRECIO ARS":47300,"PRECIO SOLES":108,"PRECIO USD":"31.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_B8AXRH0UMD","LInk pago Paypal":"https://www.paypal.com/ncp/payment/689YE9Z48LU6W"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Anual","DESCRIPCION":"Acceso para 2 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":136500,"PRECIO ARS":58500,"PRECIO SOLES":134,"PRECIO USD":"39.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_1K9C4OHI1M","LInk pago Paypal":"https://www.paypal.com/ncp/payment/QLP8EKVCNKSE8"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Anual","DESCRIPCION":"Acceso para 3 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":189000,"PRECIO ARS":81000,"PRECIO SOLES":186,"PRECIO USD":"54.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_RW7Q3SNS64","LInk pago Paypal":"https://www.paypal.com/ncp/payment/JFHG5TCELFX4Y"},
             {"NOMBRE_PRODUCTO":"Panel 25 créditos","DESCRIPCION":"Panel inicial para revendedor con 25 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":87500,"PRECIO ARS":37500,"PRECIO SOLES":88,"PRECIO USD":"25.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_H9XM8N5TCJ","LInk pago Paypal":"https://www.paypal.com/ncp/payment/TL5YDN35EAM7C"},
             {"NOMBRE_PRODUCTO":"Panel 50 créditos","DESCRIPCION":"Panel para revendedor con 50 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":140000,"PRECIO ARS":60000,"PRECIO SOLES":140,"PRECIO USD":"40.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_TASC00SZSO","LInk pago Paypal":"https://www.paypal.com/ncp/payment/NH8SDARU7MJ5W"},
             {"NOMBRE_PRODUCTO":"Panel 70 créditos","DESCRIPCION":"Panel para revendedor con 70 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":175000,"PRECIO ARS":75000,"PRECIO SOLES":175,"PRECIO USD":"50.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_443GEPERFA","LInk pago Paypal":"https://www.paypal.com/ncp/payment/NUVA6KWD6BCS2"},
