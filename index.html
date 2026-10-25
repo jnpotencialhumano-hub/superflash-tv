@@ -21,10 +21,10 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#0B0F19',    // Fondo principal muy oscuro
-                            card: '#1F2937',    // Fondo de tarjetas
-                            light: '#374151',   // Bordes y detalles
-                            accent: '#FBBF24',  // Amarillo/Dorado principal
+                            dark: '#0B0F19',    
+                            card: '#1F2937',    
+                            light: '#374151',   
+                            accent: '#FBBF24',  
                             accentHover: '#F59E0B',
                         }
                     },
@@ -56,7 +56,6 @@
             color: #F9FAFB;
         }
 
-        /* Glassmorphism sutil */
         .glass-nav {
             background: rgba(11, 15, 25, 0.85);
             backdrop-filter: blur(12px);
@@ -69,13 +68,11 @@
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0B0F19; }
         ::-webkit-scrollbar-thumb { background: #4B5563; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #FBBF24; }
 
-        /* Toggle Switch Styles */
         .toggle-checkbox:checked { right: 0; border-color: #FBBF24; }
         .toggle-checkbox:checked + .toggle-label { background-color: #FBBF24; }
         
@@ -85,7 +82,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Ocultar input file por defecto y estilizar */
         input[type="file"]::file-selector-button {
             display: none;
         }
@@ -113,7 +109,6 @@
                         </button>
                     </div>
                 </div>
-                <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
@@ -121,7 +116,6 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden glass-nav absolute w-full border-b border-gray-800">
             <div class="px-4 pt-2 pb-6 space-y-3">
                 <a href="#inicio" class="block text-gray-300 hover:text-brand-accent font-medium">Inicio</a>
@@ -137,13 +131,11 @@
 
     <!-- Sección Hero Principal -->
     <section id="inicio" class="pt-32 pb-16 lg:pt-40 lg:pb-24 relative overflow-hidden">
-        <!-- Efectos de luz de fondo -->
         <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-accent opacity-10 rounded-full blur-[120px] pointer-events-none"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-600 opacity-10 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
             
-            <!-- Pancarta 16:9 Logo -->
             <img src="images/banner-hero.webp" alt="Superflash TV Banner" class="w-full max-w-2xl mx-auto mb-8 animate-slide-up rounded-2xl shadow-2xl drop-shadow-[0_0_15px_rgba(251,191,36,0.15)]">
 
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight animate-slide-up" style="animation-delay: 0.1s;">
@@ -161,7 +153,6 @@
                 </a>
             </div>
 
-            <!-- IMAGEN: Dispositivos o mockup de la app -->
             <div class="mt-16 w-full max-w-4xl mx-auto animate-slide-up" style="animation-delay: 0.4s;">
                 <div class="relative rounded-2xl overflow-hidden border border-gray-800 shadow-2xl bg-gray-900 aspect-video flex items-center justify-center group">
                     <img src="images/mockup-dispositivos.webp" alt="Mockup Dispositivos" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
@@ -179,8 +170,7 @@
                 <p class="text-gray-400 max-w-2xl mx-auto">Diseñado para brindarte la mejor experiencia de usuario sin interrupciones.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Beneficio 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
                     <img src="images/beneficio-calidad.webp" alt="Calidad" class="w-full h-48 object-cover">
                     <div class="p-6">
@@ -190,7 +180,6 @@
                     </div>
                 </div>
 
-                <!-- Beneficio 2 -->
                 <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
                     <img src="images/beneficio-multidispositivos.webp" alt="Dispositivos" class="w-full h-48 object-cover">
                     <div class="p-6">
@@ -200,7 +189,6 @@
                     </div>
                 </div>
 
-                <!-- Beneficio 3 -->
                 <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
                     <img src="images/beneficio-negocio.webp" alt="Revendedores" class="w-full h-48 object-cover">
                     <div class="p-6">
@@ -233,7 +221,7 @@
                 <span id="label-reseller" class="font-medium text-gray-400 px-4 py-2 rounded-full transition-colors cursor-pointer" onclick="document.getElementById('pricing-toggle').click()">Para Revendedores</span>
             </div>
 
-            <!-- Selector de Duración (Usuarios) -->
+            <!-- Selector de Duración -->
             <div id="duration-selector" class="flex justify-center mb-12 flex-wrap gap-3 animate-fade-in">
                 <button class="duration-btn active bg-brand-accent text-brand-dark font-bold py-2.5 px-6 rounded-full transition-all" data-duration="MENSUAL">Mensual</button>
                 <button class="duration-btn bg-brand-card text-white hover:bg-gray-700 font-bold py-2.5 px-6 rounded-full border border-gray-700 transition-all" data-duration="TRIMESTRAL">Trimestral</button>
@@ -241,8 +229,8 @@
                 <button class="duration-btn bg-brand-card text-white hover:bg-gray-700 font-bold py-2.5 px-6 rounded-full border border-gray-700 transition-all" data-duration="ANUAL">Anual</button>
             </div>
 
-            <!-- Contenedor de Tarjetas de Precio -->
-            <div id="pricing-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Contenedor de Tarjetas de Precio. flex y justify-center aseguran que se centren si son pocos planes -->
+            <div id="pricing-container" class="flex flex-wrap justify-center gap-6">
                 <!-- Se inyectan con JavaScript -->
             </div>
         </div>
@@ -256,7 +244,7 @@
                 <p class="text-gray-400">Descarga nuestras aplicaciones oficiales en tu dispositivo preferido.</p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 justify-center">
                 
                 <a href="https://www.amazon.com/dp/B09KG5K6GV" target="_blank" class="glass-card p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group">
                     <i class="fab fa-amazon text-4xl mb-3 text-gray-300 group-hover:text-brand-accent transition-colors"></i>
@@ -329,7 +317,6 @@
 
     <!-- Flotantes de WhatsApp -->
     <div class="fixed bottom-6 right-6 flex flex-col gap-4 z-30">
-        <!-- Soporte -->
         <a href="https://wa.me/573189583079" target="_blank" class="group flex items-center justify-end relative">
             <span class="absolute right-16 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg border border-gray-700">
                 Soporte Técnico
@@ -339,7 +326,6 @@
             </div>
         </a>
         
-        <!-- Ventas -->
         <a href="https://wa.me/573203962798" target="_blank" class="group flex items-center justify-end relative">
             <span class="absolute right-16 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg border border-gray-700">
                 Ventas / Información
@@ -350,25 +336,21 @@
         </a>
     </div>
 
-    <!-- MODAL: INYECTOR DE CUENTAS (PESTAÑA APARTE) -->
+    <!-- MODAL: INYECTOR DE CUENTAS -->
     <div id="injector-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md items-center justify-center p-4 md:p-6 overflow-y-auto">
-        
         <div class="w-full max-w-6xl bg-brand-card border border-gray-700 rounded-3xl shadow-2xl relative flex flex-col lg:flex-row overflow-hidden animate-fade-in my-auto">
             
-            <!-- Botón Cerrar -->
             <button onclick="closeInjectorModal()" class="absolute top-4 right-4 z-20 w-10 h-10 bg-black/50 rounded-full text-gray-300 hover:text-white hover:bg-red-500 transition-colors flex items-center justify-center">
                 <i class="fas fa-times text-xl"></i>
             </button>
 
-            <!-- Lado Izquierdo: Formulario -->
-            <div class="w-full lg:w-1/2 p-8 md:p-12 relative">
-                <!-- Brillo de fondo -->
+            <div class="w-full lg:w-1/2 p-8 md:p-12 relative text-center lg:text-left">
                 <div class="absolute top-0 left-0 w-64 h-64 bg-brand-accent rounded-full mix-blend-screen filter blur-[100px] opacity-10"></div>
                 
                 <h2 class="text-3xl font-bold mb-2">Configurar <span class="text-brand-accent">Servicio</span></h2>
                 <p class="text-gray-400 mb-8 text-sm">Ingresa tus credenciales y sube la foto del código QR de tu TV (Duplecast, Ibocast o Smartone).</p>
                 
-                <form id="injector-form" onsubmit="handleFormSubmit(event)" class="space-y-5 relative z-10">
+                <form id="injector-form" onsubmit="handleFormSubmit(event)" class="space-y-5 relative z-10 text-left">
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-1">Usuario proporcionado</label>
                         <div class="relative">
@@ -411,13 +393,11 @@
                     </button>
                 </form>
 
-                <!-- Mensaje de éxito simulado -->
                 <div id="form-message" class="hidden mt-6 p-4 rounded-xl bg-green-900/30 border border-green-500/50 text-green-400 text-sm text-center animate-slide-up"></div>
             </div>
 
-            <!-- Lado Derecho: Instrucciones y Video -->
-            <div class="w-full lg:w-1/2 bg-brand-dark p-8 md:p-12 flex flex-col justify-center border-l border-gray-800">
-                <h3 class="text-2xl font-bold mb-4 flex items-center gap-3">
+            <div class="w-full lg:w-1/2 bg-brand-dark p-8 md:p-12 flex flex-col justify-center border-l border-gray-800 text-center lg:text-left">
+                <h3 class="text-2xl font-bold mb-4 flex items-center justify-center lg:justify-start gap-3">
                     <i class="fab fa-youtube text-red-500"></i> ¿Cómo hacerlo?
                 </h3>
                 <p class="text-gray-400 text-sm mb-6">
@@ -426,7 +406,6 @@
                 </p>
                 
                 <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-700 bg-black">
-                    <!-- Placeholder de Youtube (Reemplazar URL en src) -->
                     <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1" title="Instrucciones" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
@@ -435,9 +414,7 @@
     </div>
 
 
-    <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
-        // --- DATA DEL CSV ---
         const rawData = [
             {"NOMBRE_PRODUCTO":"Plan Basic Menusal","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":12000,"PRECIO ARS":5300,"PRECIO SOLES":12,"PRECIO USD":"3.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_UOLUYCGLI7","LInk pago Paypal":"https://www.paypal.com/ncp/payment/Q549GKAHFC3BS"},
             {"NOMBRE_PRODUCTO":"Plan Plus Mensual","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":17500,"PRECIO ARS":7500,"PRECIO SOLES":17.5,"PRECIO USD":"5.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_80GDQ76C4M","LInk pago Paypal":"https://www.paypal.com/ncp/payment/S8D8DLCLGF6UG"},
@@ -485,29 +462,30 @@
                 const badgeBg = isHighlight ? 'bg-brand-accent text-brand-dark' : 'bg-gray-700 text-white';
                 let badgeText = currentMode === 'user' ? plan['NOMBRE_PRODUCTO'].split(' ')[1] || 'Plan' : 'Créditos';
 
+                // Añadida clase w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.5rem)] para controlar el ancho en el flexbox
                 container.innerHTML += `
-                    <div class="glass-card rounded-3xl p-6 border transition-all duration-300 flex flex-col animate-fade-in ${borderClass}">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-lg font-bold">${plan['NOMBRE_PRODUCTO']}</h3>
+                    <div class="glass-card w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.125rem)] max-w-[320px] rounded-3xl p-6 border transition-all duration-300 flex flex-col items-center text-center animate-fade-in ${borderClass}">
+                        <div class="flex flex-col items-center mb-4 w-full">
+                            <h3 class="text-lg font-bold mb-2">${plan['NOMBRE_PRODUCTO']}</h3>
                             <span class="text-xs font-bold px-3 py-1 rounded-full ${badgeBg}">${badgeText}</span>
                         </div>
                         <p class="text-gray-400 text-sm mb-6 min-h-[40px] leading-relaxed">${plan['DESCRIPCION']}</p>
                         
-                        <div class="mb-6 flex-grow border-b border-gray-700/50 pb-6">
-                            <div class="flex items-end gap-1 mb-4">
+                        <div class="mb-6 flex-grow border-b border-gray-700/50 pb-6 w-full flex flex-col items-center">
+                            <div class="flex items-end justify-center gap-1 mb-4">
                                 <span class="text-2xl text-brand-accent font-bold">$</span>
                                 <span class="text-5xl font-extrabold tracking-tight">${plan['PRECIO USD']}</span>
                                 <span class="text-lg text-gray-400 font-medium mb-1">USD</span>
                             </div>
                             
-                            <div class="space-y-1">
+                            <div class="space-y-1 w-full max-w-[200px]">
                                 <div class="flex justify-between text-sm"><span class="text-gray-500">🇨🇴 COP</span><span class="font-semibold text-gray-300">$${formatNum(plan['PRECIO COP'])}</span></div>
                                 <div class="flex justify-between text-sm"><span class="text-gray-500">🇦🇷 ARS</span><span class="font-semibold text-gray-300">$${formatNum(plan['PRECIO ARS'])}</span></div>
                                 <div class="flex justify-between text-sm"><span class="text-gray-500">🇵🇪 SOLES</span><span class="font-semibold text-gray-300">S/ ${formatNum(plan['PRECIO SOLES'])}</span></div>
                             </div>
                         </div>
                         
-                        <div class="space-y-3 mt-auto">
+                        <div class="space-y-3 mt-auto w-full">
                             <a href="${plan['Link Pago Bold']}" target="_blank" class="w-full bg-[#1e1b4b] hover:bg-[#312e81] text-white border border-[#4338ca] rounded-xl py-3 px-4 font-bold flex justify-center items-center gap-2 transition-colors">
                                 <i class="fas fa-credit-card text-[#818cf8]"></i> Pagar con Bold
                             </a>
@@ -520,7 +498,6 @@
             });
         }
 
-        // Toggle Switch Listeners
         document.getElementById('pricing-toggle').addEventListener('change', (e) => {
             currentMode = e.target.checked ? 'reseller' : 'user';
             const lblUser = document.getElementById('label-user');
@@ -543,7 +520,6 @@
             renderPricing();
         });
 
-        // Durations
         document.querySelectorAll('.duration-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.duration-btn').forEach(b => {
@@ -557,9 +533,8 @@
             });
         });
 
-        renderPricing(); // init
+        renderPricing(); 
 
-        // Mobile Menu
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -567,7 +542,6 @@
             el.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
-        // Injector Modal Logic
         const injModal = document.getElementById('injector-modal');
         function openInjectorModal() {
             injModal.classList.remove('hidden');
@@ -578,7 +552,6 @@
             injModal.classList.add('hidden');
             injModal.classList.remove('flex');
             document.body.style.overflow = 'auto';
-            // Stop video
             const iframe = injModal.querySelector('iframe');
             if(iframe) iframe.src = iframe.src;
         }
