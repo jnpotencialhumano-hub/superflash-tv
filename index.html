@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superflash TV - Tu Portal de Entretenimiento Premium</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',    // Fondo principal muy oscuro
+                            card: '#1F2937',    // Fondo de tarjetas
+                            light: '#374151',   // Bordes y detalles
+                            accent: '#FBBF24',  // Amarillo/Dorado principal
+                            accentHover: '#F59E0B',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B0F19;
+            color: #F9FAFB;
+        }
+
+        /* Glassmorphism sutil */
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(31, 41, 55, 0.7), rgba(17, 24, 39, 0.9));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F19; }
+        ::-webkit-scrollbar-thumb { background: #4B5563; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FBBF24; }
+
+        /* Toggle Switch Styles */
+        .toggle-checkbox:checked { right: 0; border-color: #FBBF24; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #FBBF24; }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #FBBF24, #FEF3C7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Ocultar input file por defecto y estilizar */
+        input[type="file"]::file-selector-button {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-brand-accent selection:text-brand-dark">
+
+    <!-- Barra de Navegación -->
+    <nav class="fixed w-full z-40 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#inicio">
+                        <img src="https://jnwebpro-saltcorn.5ddkar.easypanel.host/files/serve/logosp.png" alt="Superflash TV" class="h-14 w-auto object-contain">
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="#inicio" class="text-gray-300 hover:text-brand-accent font-medium transition-colors">Inicio</a>
+                        <a href="#beneficios" class="text-gray-300 hover:text-brand-accent font-medium transition-colors">Beneficios</a>
+                        <a href="#precios" class="text-gray-300 hover:text-brand-accent font-medium transition-colors">Planes</a>
+                        <a href="#descargas" class="text-gray-300 hover:text-brand-accent font-medium transition-colors">Apps</a>
+                        <button onclick="openInjectorModal()" class="bg-brand-accent text-brand-dark hover:bg-brand-accentHover px-5 py-2.5 rounded-full font-bold transition-all shadow-[0_4px_14px_rgba(251,191,36,0.4)] hover:scale-105">
+                            Configurar Cuenta
+                        </button>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-nav absolute w-full border-b border-gray-800">
+            <div class="px-4 pt-2 pb-6 space-y-3">
+                <a href="#inicio" class="block text-gray-300 hover:text-brand-accent font-medium">Inicio</a>
+                <a href="#beneficios" class="block text-gray-300 hover:text-brand-accent font-medium">Beneficios</a>
+                <a href="#precios" class="block text-gray-300 hover:text-brand-accent font-medium">Planes</a>
+                <a href="#descargas" class="block text-gray-300 hover:text-brand-accent font-medium">Apps</a>
+                <button onclick="openInjectorModal()" class="w-full text-center bg-brand-accent text-brand-dark font-bold px-4 py-3 rounded-xl mt-4">
+                    Configurar Cuenta
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Hero Principal -->
+    <section id="inicio" class="pt-32 pb-16 lg:pt-40 lg:pb-24 relative overflow-hidden">
+        <!-- Efectos de luz de fondo -->
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-accent opacity-10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-600 opacity-10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
+            
+            <!-- Pancarta 16:9 Logo -->
+            <img src="https://jnwebpro-saltcorn.5ddkar.easypanel.host/files/serve/pancarta.png" alt="Superflash TV Banner" class="w-full max-w-2xl mx-auto mb-8 animate-slide-up rounded-2xl shadow-2xl drop-shadow-[0_0_15px_rgba(251,191,36,0.15)]">
+
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight animate-slide-up" style="animation-delay: 0.1s;">
+                El futuro de la televisión <br class="hidden md:block">
+                está en <span class="gradient-text">tus manos</span>
+            </h1>
+            
+            <p class="mt-4 max-w-2xl text-lg md:text-xl text-gray-400 mx-auto mb-10 animate-slide-up" style="animation-delay: 0.2s;">
+                Películas, series, deportes en vivo y contenido exclusivo. Todo en máxima calidad y disponible en todos tus dispositivos favoritos.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-slide-up" style="animation-delay: 0.3s;">
+                <a href="#precios" class="px-8 py-4 bg-brand-accent text-brand-dark rounded-full font-bold text-lg hover:bg-brand-accentHover hover:scale-105 transition-all shadow-[0_0_20px_rgba(251,191,36,0.3)] flex items-center justify-center gap-2">
+                    Ver Planes y Precios <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- IMAGEN PLACEHOLDER: Dispositivos o mockup de la app (Sugerido: 1000x600) -->
+            <div class="mt-16 w-full max-w-4xl mx-auto animate-slide-up" style="animation-delay: 0.4s;">
+                <div class="relative rounded-2xl overflow-hidden border border-gray-800 shadow-2xl bg-gray-900 aspect-video flex items-center justify-center group">
+                    <!-- Instrucción para el usuario -->
+                    <img src="https://placehold.co/1000x600/1F2937/FBBF24?text=Reemplazar+con+Imagen+de+Dispositivos+(1000x600)" alt="Mockup Dispositivos" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sección de Beneficios / Acerca de -->
+    <section id="beneficios" class="py-20 bg-[#0F1423]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Por qué elegir <span class="text-brand-accent">Superflash?</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Diseñado para brindarte la mejor experiencia de usuario sin interrupciones.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Beneficio 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <!-- PLACEHOLDER 400x300 -->
+                    <img src="https://placehold.co/400x300/111827/FBBF24?text=Imagen+Familia+(400x300)" alt="Calidad" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <i class="fas fa-tv text-3xl text-brand-accent mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Calidad 4K y Full HD</h3>
+                        <p class="text-gray-400 text-sm">Disfruta de tus programas favoritos con la mayor nitidez y sin cortes molestos.</p>
+                    </div>
+                </div>
+
+                <!-- Beneficio 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <!-- PLACEHOLDER 400x300 -->
+                    <img src="https://placehold.co/400x300/111827/FBBF24?text=Imagen+Multidispositivo+(400x300)" alt="Dispositivos" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <i class="fas fa-mobile-alt text-3xl text-brand-accent mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Multidispositivo</h3>
+                        <p class="text-gray-400 text-sm">Compatible con Smart TVs, móviles, tablets, TV Boxes y ordenadores. Donde quieras.</p>
+                    </div>
+                </div>
+
+                <!-- Beneficio 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                    <!-- PLACEHOLDER 400x300 -->
+                    <img src="https://placehold.co/400x300/111827/FBBF24?text=Imagen+Negocio+(400x300)" alt="Revendedores" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <i class="fas fa-handshake text-3xl text-brand-accent mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Oportunidad de Negocio</h3>
+                        <p class="text-gray-400 text-sm">Conviértete en revendedor con nuestros paneles ilimitados y genera ingresos extra fácilmente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Precios Dinámicos -->
+    <section id="precios" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 id="pricing-title" class="text-3xl md:text-5xl font-bold mb-4">Planes a tu <span class="text-brand-accent">Medida</span></h2>
+                <p id="pricing-desc" class="text-gray-400 max-w-2xl mx-auto text-lg">Elige la suscripción perfecta para disfrutar o empezar a vender.</p>
+            </div>
+
+            <!-- Switch Cliente vs Revendedor -->
+            <div class="flex justify-center items-center mb-12 gap-5 bg-brand-card w-fit mx-auto p-2 rounded-full border border-gray-800">
+                <span id="label-user" class="font-bold text-brand-accent px-4 py-2 rounded-full transition-colors cursor-pointer" onclick="document.getElementById('pricing-toggle').click()">Para Usuarios</span>
+                
+                <div class="relative inline-block w-16 align-middle select-none transition duration-200 ease-in">
+                    <input type="checkbox" name="toggle" id="pricing-toggle" class="toggle-checkbox absolute block w-8 h-8 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 top-0 left-0 transition-all duration-300"/>
+                    <label for="pricing-toggle" class="toggle-label block overflow-hidden h-8 rounded-full bg-gray-600 cursor-pointer transition-colors duration-300"></label>
+                </div>
+                
+                <span id="label-reseller" class="font-medium text-gray-400 px-4 py-2 rounded-full transition-colors cursor-pointer" onclick="document.getElementById('pricing-toggle').click()">Para Revendedores</span>
+            </div>
+
+            <!-- Selector de Duración (Usuarios) -->
+            <div id="duration-selector" class="flex justify-center mb-12 flex-wrap gap-3 animate-fade-in">
+                <button class="duration-btn active bg-brand-accent text-brand-dark font-bold py-2.5 px-6 rounded-full transition-all" data-duration="MENSUAL">Mensual</button>
+                <button class="duration-btn bg-brand-card text-white hover:bg-gray-700 font-bold py-2.5 px-6 rounded-full border border-gray-700 transition-all" data-duration="TRIMESTRAL">Trimestral</button>
+                <button class="duration-btn bg-brand-card text-white hover:bg-gray-700 font-bold py-2.5 px-6 rounded-full border border-gray-700 transition-all" data-duration="SEMESTRAL">Semestral</button>
+                <button class="duration-btn bg-brand-card text-white hover:bg-gray-700 font-bold py-2.5 px-6 rounded-full border border-gray-700 transition-all" data-duration="ANUAL">Anual</button>
+            </div>
+
+            <!-- Contenedor de Tarjetas de Precio -->
+            <div id="pricing-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Se inyectan con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Descargas -->
+    <section id="descargas" class="py-24 bg-[#0F1423] border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Lleva el entretenimiento <span class="text-brand-accent">contigo</span></h2>
+                <p class="text-gray-400">Descarga nuestras aplicaciones oficiales en tu dispositivo preferido.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+                
+                <a href="https://www.amazon.com/dp/B09KG5K6GV" target="_blank" class="glass-card p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group">
+                    <i class="fab fa-amazon text-4xl mb-3 text-gray-300 group-hover:text-brand-accent transition-colors"></i>
+                    <h3 class="font-bold text-sm md:text-base">Fire TV</h3>
+                </a>
+                
+                <a href="http://aftv.news/7783659" target="_blank" class="glass-card p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group">
+                    <i class="fas fa-download text-4xl mb-3 text-gray-300 group-hover:text-brand-accent transition-colors"></i>
+                    <h3 class="font-bold text-sm md:text-base">Downloader</h3>
+                    <p class="text-xs text-brand-accent mt-1">Cód: 7783659</p>
+                </a>
+
+                <a href="https://play.google.com/store/apps/details?id=tv.maxplayer.android" target="_blank" class="glass-card p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group">
+                    <i class="fab fa-google-play text-4xl mb-3 text-gray-300 group-hover:text-brand-accent transition-colors"></i>
+                    <h3 class="font-bold text-sm md:text-base">Android TV</h3>
+                </a>
+
+                <a href="https://us.lgappstv.com/main/tvapp/detail?appId=1065783" target="_blank" class="glass-card p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group">
+                    <i class="fas fa-tv text-4xl mb-3 text-gray-300 group-hover:text-brand-accent transition-colors"></i>
+                    <h3 class="font-bold text-sm md:text-base">LG Smart TV</h3>
+                </a>
+
+                <a href="https://www.samsung.com/us/appstore/app/G21186017345/" target="_blank" class="glass-card p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group">
+                    <i class="fas fa-tv text-4xl mb-3 text-gray-300 group-hover:text-brand-accent transition-colors"></i>
+                    <h3 class="font-bold text-sm md:text-base">Samsung TV</h3>
+                </a>
+
+                <a href="https://apps.microsoft.com/detail/9njp3ph1hxl6?hl=es-ES&gl=CO" target="_blank" class="glass-card p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group">
+                    <i class="fab fa-windows text-4xl mb-3 text-gray-300 group-hover:text-brand-accent transition-colors"></i>
+                    <h3 class="font-bold text-sm md:text-base">Windows</h3>
+                </a>
+
+                <a href="https://apps.apple.com/us/app/maxplayer-iptv-m3u-player/id1660982028" target="_blank" class="glass-card p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group">
+                    <i class="fab fa-apple text-4xl mb-3 text-gray-300 group-hover:text-brand-accent transition-colors"></i>
+                    <h3 class="font-bold text-sm md:text-base">iOS / iPad</h3>
+                </a>
+
+                <a href="https://apps.apple.com/us/app/maxplayer-iptv-m3u-player/id1660982028" target="_blank" class="glass-card p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group">
+                    <i class="fab fa-app-store-ios text-4xl mb-3 text-gray-300 group-hover:text-brand-accent transition-colors"></i>
+                    <h3 class="font-bold text-sm md:text-base">Apple TV</h3>
+                </a>
+
+                <a href="https://channelstore.roku.com/es-co/details/bf240f3b1f40d554fde7a2a046b9c876:f69e60cc1a03872b0744c19ec91e0f71/maxplayer" target="_blank" class="glass-card p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group col-span-2 md:col-span-1">
+                    <span class="text-3xl mb-3 text-[#6f1ab1] font-extrabold block group-hover:text-brand-accent transition-colors">Roku</span>
+                    <h3 class="font-bold text-sm md:text-base">Roku TV</h3>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#05070C] pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col items-center md:items-start">
+                <img src="https://jnwebpro-saltcorn.5ddkar.easypanel.host/files/serve/logosp.png" alt="Superflash TV" class="h-12 mb-4">
+                <p class="text-gray-500 text-sm text-center md:text-left">© 2026 Superflash TV. Todos los derechos reservados.</p>
+            </div>
+            
+            <div class="flex gap-4">
+                <a href="https://wa.me/573189583079" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-brand-accent hover:bg-gray-700 transition-all">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-brand-accent hover:bg-gray-700 transition-all">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Flotantes de WhatsApp -->
+    <div class="fixed bottom-6 right-6 flex flex-col gap-4 z-30">
+        <!-- Soporte -->
+        <a href="https://wa.me/573189583079" target="_blank" class="group flex items-center justify-end relative">
+            <span class="absolute right-16 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg border border-gray-700">
+                Soporte Técnico
+            </span>
+            <div class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl shadow-[0_0_15px_rgba(34,197,94,0.4)] hover:scale-110 transition-transform">
+                <i class="fas fa-headset"></i>
+            </div>
+        </a>
+        
+        <!-- Ventas -->
+        <a href="https://wa.me/573203962798" target="_blank" class="group flex items-center justify-end relative">
+            <span class="absolute right-16 bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg border border-gray-700">
+                Ventas / Información
+            </span>
+            <div class="w-14 h-14 bg-brand-accent rounded-full flex items-center justify-center text-brand-dark text-3xl shadow-[0_0_15px_rgba(251,191,36,0.4)] hover:scale-110 transition-transform">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+        </a>
+    </div>
+
+    <!-- MODAL: INYECTOR DE CUENTAS (PESTAÑA APARTE) -->
+    <div id="injector-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md items-center justify-center p-4 md:p-6 overflow-y-auto">
+        
+        <div class="w-full max-w-6xl bg-brand-card border border-gray-700 rounded-3xl shadow-2xl relative flex flex-col lg:flex-row overflow-hidden animate-fade-in my-auto">
+            
+            <!-- Botón Cerrar -->
+            <button onclick="closeInjectorModal()" class="absolute top-4 right-4 z-20 w-10 h-10 bg-black/50 rounded-full text-gray-300 hover:text-white hover:bg-red-500 transition-colors flex items-center justify-center">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+
+            <!-- Lado Izquierdo: Formulario -->
+            <div class="w-full lg:w-1/2 p-8 md:p-12 relative">
+                <!-- Brillo de fondo -->
+                <div class="absolute top-0 left-0 w-64 h-64 bg-brand-accent rounded-full mix-blend-screen filter blur-[100px] opacity-10"></div>
+                
+                <h2 class="text-3xl font-bold mb-2">Configurar <span class="text-brand-accent">Servicio</span></h2>
+                <p class="text-gray-400 mb-8 text-sm">Ingresa tus credenciales y sube la foto del código QR de tu TV (Duplecast, Ibocast o Smartone).</p>
+                
+                <form id="injector-form" onsubmit="handleFormSubmit(event)" class="space-y-5 relative z-10">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Usuario proporcionado</label>
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                            <input type="text" required placeholder="Ej: user1234" class="w-full pl-11 pr-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white transition-all">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Contraseña proporcionada</label>
+                        <div class="relative">
+                            <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                            <input type="password" required placeholder="••••••••" class="w-full pl-11 pr-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white transition-all">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">App en tu TV</label>
+                        <select class="w-full px-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white appearance-none cursor-pointer">
+                            <option value="duplecast">Duplecast</option>
+                            <option value="ibocast">Ibocast</option>
+                            <option value="smartone">Smartone IPTV</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1">Foto del Código QR</label>
+                        <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-xl cursor-pointer bg-brand-dark/30 hover:bg-brand-dark/80 hover:border-brand-accent transition-all">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <i class="fas fa-camera text-3xl text-gray-400 mb-2"></i>
+                                <p class="mb-1 text-sm text-gray-400"><span class="font-semibold text-brand-accent">Haz clic para subir</span> o arrastra</p>
+                                <p class="text-xs text-gray-500">PNG o JPG (Max. 10MB)</p>
+                            </div>
+                            <input type="file" class="hidden" accept="image/*" required>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-accent text-brand-dark font-bold text-lg py-4 rounded-xl hover:bg-brand-accentHover transition-colors shadow-[0_0_15px_rgba(251,191,36,0.2)] mt-6 flex items-center justify-center gap-2">
+                        <i class="fas fa-bolt"></i> Inyectar Lista Ahora
+                    </button>
+                </form>
+
+                <!-- Mensaje de éxito simulado -->
+                <div id="form-message" class="hidden mt-6 p-4 rounded-xl bg-green-900/30 border border-green-500/50 text-green-400 text-sm text-center animate-slide-up"></div>
+            </div>
+
+            <!-- Lado Derecho: Instrucciones y Video -->
+            <div class="w-full lg:w-1/2 bg-brand-dark p-8 md:p-12 flex flex-col justify-center border-l border-gray-800">
+                <h3 class="text-2xl font-bold mb-4 flex items-center gap-3">
+                    <i class="fab fa-youtube text-red-500"></i> ¿Cómo hacerlo?
+                </h3>
+                <p class="text-gray-400 text-sm mb-6">
+                    Mira este breve tutorial para entender cómo generar el código QR desde tu televisor. 
+                    <strong class="text-brand-accent">Importante:</strong> El código QR expira rápido por seguridad. Si tienes un error, reinicia la app en tu TV y sube una foto nueva inmediatamente.
+                </p>
+                
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-700 bg-black">
+                    <!-- Placeholder de Youtube (Reemplazar URL en src) -->
+                    <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1" title="Instrucciones" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        // --- DATA DEL CSV ---
+        const rawData = [
+            {"NOMBRE_PRODUCTO":"Plan Basic Menusal","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":10000,"PRECIO ARS":5250,"PRECIO SOLES":10,"PRECIO USD":"3.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_UOLUYCGLI7","LInk pago Paypal":"https://www.paypal.com/ncp/payment/Q549GKAHFC3BS"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Mensual","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":15000,"PRECIO ARS":6800,"PRECIO SOLES":15,"PRECIO USD":"5.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_80GDQ76C4M","LInk pago Paypal":"https://www.paypal.com/ncp/payment/S8D8DLCLGF6UG"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Mensual","DESCRIPCION":"Acceso a la plataforma para 3 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":20000,"PRECIO ARS":9000,"PRECIO SOLES":21,"PRECIO USD":"6.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_UGP9ZY4QDO","LInk pago Paypal":"https://www.paypal.com/ncp/payment/8WPNHPPJ9NESC"},
+            {"NOMBRE_PRODUCTO":"Plan Ultra Mensual","DESCRIPCION":"Acceso a la plataforma para 5 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":25000,"PRECIO ARS":11300,"PRECIO SOLES":26,"PRECIO USD":"8.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_OG728F4GF0","LInk pago Paypal":"https://www.paypal.com/ncp/payment/E3RQ2HXTQVM6C"},
+            {"NOMBRE_PRODUCTO":"Plan Basic Trimestral","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":25000,"PRECIO ARS":11300,"PRECIO SOLES":26,"PRECIO USD":"9.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_7UZGSVNH1X","LInk pago Paypal":"https://www.paypal.com/ncp/payment/8JDJ7LFDFR7JN"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Trimestral","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":35000,"PRECIO ARS":17300,"PRECIO SOLES":40,"PRECIO USD":"13.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_9QIAMWPMEM","LInk pago Paypal":"https://www.paypal.com/ncp/payment/67MDH2T5RB39N"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Trimestral","DESCRIPCION":"Acceso a la plataforma para 3 dispositivos por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":50000,"PRECIO ARS":24750,"PRECIO SOLES":53,"PRECIO USD":"16.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_KXUBW8HNAT","LInk pago Paypal":"https://www.paypal.com/ncp/payment/MNVU24C9P7A44"},
+            {"NOMBRE_PRODUCTO":"Plan Basic Semestral","DESCRIPCION":"Acceso para 1 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":45000,"PRECIO ARS":20300,"PRECIO SOLES":47,"PRECIO USD":"16.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_7LZDA4MBSS","LInk pago Paypal":"https://www.paypal.com/ncp/payment/LT774UU643RYN"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Semestral","DESCRIPCION":"Acceso para 2 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":65000,"PRECIO ARS":29300,"PRECIO SOLES":68,"PRECIO USD":"22.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_IMX5HU2NVQ","LInk pago Paypal":"https://www.paypal.com/ncp/payment/9GGE2XB8PTE5S"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Semestral","DESCRIPCION":"Acceso para 3 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":90000,"PRECIO ARS":45000,"PRECIO SOLES":95,"PRECIO USD":"30.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_V9G04A0L9W","LInk pago Paypal":"https://www.paypal.com/ncp/payment/UKV524XE9FPF2"},
+            {"NOMBRE_PRODUCTO":"Plan Basic Anual","DESCRIPCION":"Acceso para 1 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":85000,"PRECIO ARS":38300,"PRECIO SOLES":90,"PRECIO USD":"31.50","Link Pago Bold":"https://checkout.bold.co/payment/LNK_B8AXRH0UMD","LInk pago Paypal":"https://www.paypal.com/ncp/payment/689YE9Z48LU6W"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Anual","DESCRIPCION":"Acceso para 2 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":110000,"PRECIO ARS":58500,"PRECIO SOLES":116,"PRECIO USD":"39.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_1K9C4OHI1M","LInk pago Paypal":"https://www.paypal.com/ncp/payment/QLP8EKVCNKSE8"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Anual","DESCRIPCION":"Acceso para 3 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":160000,"PRECIO ARS":81000,"PRECIO SOLES":189,"PRECIO USD":"54.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_RW7Q3SNS64","LInk pago Paypal":"https://www.paypal.com/ncp/payment/JFHG5TCELFX4Y"},
+            {"NOMBRE_PRODUCTO":"Panel 25 créditos","DESCRIPCION":"Panel inicial para revendedor con 25 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":87500,"PRECIO ARS":37500,"PRECIO SOLES":88,"PRECIO USD":"25.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_H9XM8N5TCJ","LInk pago Paypal":"https://www.paypal.com/ncp/payment/TL5YDN35EAM7C"},
+            {"NOMBRE_PRODUCTO":"Panel 50 créditos","DESCRIPCION":"Panel para revendedor con 50 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":140000,"PRECIO ARS":60000,"PRECIO SOLES":140,"PRECIO USD":"40.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_TASC00SZSO","LInk pago Paypal":"https://www.paypal.com/ncp/payment/NH8SDARU7MJ5W"},
+            {"NOMBRE_PRODUCTO":"Panel 70 créditos","DESCRIPCION":"Panel para revendedor con 70 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":175000,"PRECIO ARS":75000,"PRECIO SOLES":175,"PRECIO USD":"50.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_443GEPERFA","LInk pago Paypal":"https://www.paypal.com/ncp/payment/NUVA6KWD6BCS2"},
+            {"NOMBRE_PRODUCTO":"Panel 100 créditos","DESCRIPCION":"Panel para revendedor con 100 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":245000,"PRECIO ARS":105000,"PRECIO SOLES":245,"PRECIO USD":"70.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_OOANSQ254T","LInk pago Paypal":"https://www.paypal.com/ncp/payment/2TMKCFJN5B8HY"},
+            {"NOMBRE_PRODUCTO":"Panel 250 créditos","DESCRIPCION":"Panel avanzado con 250 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":472500,"PRECIO ARS":202500,"PRECIO SOLES":473,"PRECIO USD":"135.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_O7I0A9V849","LInk pago Paypal":"https://www.paypal.com/ncp/payment/RSXVBFDCYXYZS"},
+            {"NOMBRE_PRODUCTO":"Panel 500 créditos","DESCRIPCION":"Panel profesional con 500 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":525000,"PRECIO ARS":225000,"PRECIO SOLES":525,"PRECIO USD":"150.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_QJ4VX81Y9F","LInk pago Paypal":"https://www.paypal.com/ncp/payment/V5B5FW7FLKNY2"},
+            {"NOMBRE_PRODUCTO":"Panel Master 1000","DESCRIPCION":"Panel Master con 1000 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":700000,"PRECIO ARS":300000,"PRECIO SOLES":700,"PRECIO USD":"200.00","Link Pago Bold":"https://checkout.bold.co/payment/LNK_BX6JESHTD1","LInk pago Paypal":"https://www.paypal.com/ncp/payment/P3GQYA5NKXKXL"}
+        ];
+
+        const groupedData = { 'MENSUAL': [], 'TRIMESTRAL': [], 'SEMESTRAL': [], 'ANUAL': [], 'ILIMITADO': [] };
+        
+        rawData.forEach(plan => {
+            plan['PRECIO USD'] = String(plan['PRECIO USD']).replace(',', '.');
+            if(groupedData[plan['TIPO DE PLAN']]) groupedData[plan['TIPO DE PLAN']].push(plan);
+        });
+
+        let currentMode = 'user'; 
+        let currentDuration = "MENSUAL";
+
+        const formatNum = (num) => new Intl.NumberFormat('es-CO').format(num);
+
+        function renderPricing() {
+            const container = document.getElementById('pricing-container');
+            container.innerHTML = ''; 
+            
+            let plansToRender = currentMode === 'user' ? groupedData[currentDuration] : groupedData['ILIMITADO'];
+
+            plansToRender.forEach((plan, index) => {
+                const isHighlight = (index === 1 && currentMode === 'user') || (index === 2 && currentMode === 'reseller');
+                const borderClass = isHighlight ? 'border-brand-accent shadow-[0_0_20px_rgba(251,191,36,0.15)] scale-[1.02]' : 'border-gray-700 hover:border-gray-500';
+                const badgeBg = isHighlight ? 'bg-brand-accent text-brand-dark' : 'bg-gray-700 text-white';
+                let badgeText = currentMode === 'user' ? plan['NOMBRE_PRODUCTO'].split(' ')[1] || 'Plan' : 'Créditos';
+
+                container.innerHTML += `
+                    <div class="glass-card rounded-3xl p-6 border transition-all duration-300 flex flex-col animate-fade-in ${borderClass}">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-bold">${plan['NOMBRE_PRODUCTO']}</h3>
+                            <span class="text-xs font-bold px-3 py-1 rounded-full ${badgeBg}">${badgeText}</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 min-h-[40px] leading-relaxed">${plan['DESCRIPCION']}</p>
+                        
+                        <div class="mb-6 flex-grow border-b border-gray-700/50 pb-6">
+                            <div class="flex items-end gap-1 mb-4">
+                                <span class="text-2xl text-brand-accent font-bold">$</span>
+                                <span class="text-5xl font-extrabold tracking-tight">${plan['PRECIO USD']}</span>
+                                <span class="text-lg text-gray-400 font-medium mb-1">USD</span>
+                            </div>
+                            
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-sm"><span class="text-gray-500">🇨🇴 COP</span><span class="font-semibold text-gray-300">$${formatNum(plan['PRECIO COP'])}</span></div>
+                                <div class="flex justify-between text-sm"><span class="text-gray-500">🇦🇷 ARS</span><span class="font-semibold text-gray-300">$${formatNum(plan['PRECIO ARS'])}</span></div>
+                                <div class="flex justify-between text-sm"><span class="text-gray-500">🇵🇪 SOLES</span><span class="font-semibold text-gray-300">S/ ${formatNum(plan['PRECIO SOLES'])}</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mt-auto">
+                            <a href="${plan['Link Pago Bold']}" target="_blank" class="w-full bg-[#1e1b4b] hover:bg-[#312e81] text-white border border-[#4338ca] rounded-xl py-3 px-4 font-bold flex justify-center items-center gap-2 transition-colors">
+                                <i class="fas fa-credit-card text-[#818cf8]"></i> Pagar con Bold
+                            </a>
+                            <a href="${plan['LInk pago Paypal']}" target="_blank" class="w-full bg-[#002f5a] hover:bg-[#00457C] text-white border border-[#005ea6] rounded-xl py-3 px-4 font-bold flex justify-center items-center gap-2 transition-colors">
+                                <i class="fab fa-paypal text-[#38bdf8]"></i> PayPal
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Toggle Switch Listeners
+        document.getElementById('pricing-toggle').addEventListener('change', (e) => {
+            currentMode = e.target.checked ? 'reseller' : 'user';
+            const lblUser = document.getElementById('label-user');
+            const lblRes = document.getElementById('label-reseller');
+            const durSel = document.getElementById('duration-selector');
+            
+            if(currentMode === 'reseller') {
+                lblUser.classList.replace('text-brand-accent', 'text-gray-400');
+                lblRes.classList.replace('text-gray-400', 'text-brand-accent');
+                durSel.classList.add('hidden');
+                document.getElementById('pricing-title').innerHTML = 'Paneles <span class="text-brand-accent">Ilimitados</span>';
+                document.getElementById('pricing-desc').innerText = 'Inicia tu propio negocio y obtén grandes ganancias.';
+            } else {
+                lblRes.classList.replace('text-brand-accent', 'text-gray-400');
+                lblUser.classList.replace('text-gray-400', 'text-brand-accent');
+                durSel.classList.remove('hidden');
+                document.getElementById('pricing-title').innerHTML = 'Planes a tu <span class="text-brand-accent">Medida</span>';
+                document.getElementById('pricing-desc').innerText = 'Elige la suscripción perfecta para disfrutar de tu contenido.';
+            }
+            renderPricing();
+        });
+
+        // Durations
+        document.querySelectorAll('.duration-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.duration-btn').forEach(b => {
+                    b.classList.replace('bg-brand-accent', 'bg-brand-card');
+                    b.classList.replace('text-brand-dark', 'text-white');
+                });
+                e.target.classList.replace('bg-brand-card', 'bg-brand-accent');
+                e.target.classList.replace('text-white', 'text-brand-dark');
+                currentDuration = e.target.getAttribute('data-duration');
+                renderPricing();
+            });
+        });
+
+        renderPricing(); // init
+
+        // Mobile Menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('#mobile-menu a, #mobile-menu button').forEach(el => {
+            el.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Injector Modal Logic
+        const injModal = document.getElementById('injector-modal');
+        function openInjectorModal() {
+            injModal.classList.remove('hidden');
+            injModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInjectorModal() {
+            injModal.classList.add('hidden');
+            injModal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+            // Stop video
+            const iframe = injModal.querySelector('iframe');
+            if(iframe) iframe.src = iframe.src;
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const ogHtml = btn.innerHTML;
+            const msgBox = document.getElementById('form-message');
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Inyectando...';
+            btn.disabled = true;
+            btn.classList.add('opacity-70');
+            msgBox.classList.add('hidden');
+
+            setTimeout(() => {
+                btn.innerHTML = ogHtml;
+                btn.disabled = false;
+                btn.classList.remove('opacity-70');
+                msgBox.innerHTML = `<strong>¡LISTA INYECTADA CON ÉXITO!</strong><br>Por favor, reinicia la aplicación en tu TV para ver los canales.`;
+                msgBox.classList.remove('hidden');
+                e.target.reset();
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
