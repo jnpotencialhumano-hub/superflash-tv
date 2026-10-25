@@ -34,6 +34,7 @@
                     animation: {
                         'fade-in': 'fadeIn 0.5s ease-out',
                         'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'pulse-glow': 'pulseGlow 2s infinite',
                     },
                     keyframes: {
                         fadeIn: {
@@ -43,6 +44,10 @@
                         slideUp: {
                             '0%': { opacity: '0', transform: 'translateY(20px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(251,191,36,0.3)' },
+                            '50%': { boxShadow: '0 0 30px rgba(251,191,36,0.6)' },
                         }
                     }
                 }
@@ -73,8 +78,15 @@
         ::-webkit-scrollbar-thumb { background: #4B5563; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #FBBF24; }
 
-        .toggle-checkbox:checked { right: 0; border-color: #FBBF24; }
-        .toggle-checkbox:checked + .toggle-label { background-color: #FBBF24; }
+        /* Arreglo del toggle switch */
+        .toggle-checkbox:checked { 
+            right: 0; 
+            border-color: #FBBF24; 
+            transform: translateX(100%); /* Esta es la línea clave para que el círculo se desplace */
+        }
+        .toggle-checkbox:checked + .toggle-label { 
+            background-color: #FBBF24; 
+        }
         
         .gradient-text {
             background: linear-gradient(90deg, #FBBF24, #FEF3C7);
@@ -102,6 +114,7 @@
                     <div class="ml-10 flex items-center space-x-8">
                         <a href="#inicio" class="text-gray-300 hover:text-brand-accent font-medium transition-colors">Inicio</a>
                         <a href="#beneficios" class="text-gray-300 hover:text-brand-accent font-medium transition-colors">Beneficios</a>
+                        <a href="#revendedores" class="text-brand-accent hover:text-white font-bold transition-colors">Negocio</a>
                         <a href="#precios" class="text-gray-300 hover:text-brand-accent font-medium transition-colors">Planes</a>
                         <a href="#descargas" class="text-gray-300 hover:text-brand-accent font-medium transition-colors">Apps</a>
                         <button onclick="openInjectorModal()" class="bg-brand-accent text-brand-dark hover:bg-brand-accentHover px-5 py-2.5 rounded-full font-bold transition-all shadow-[0_4px_14px_rgba(251,191,36,0.4)] hover:scale-105">
@@ -117,9 +130,10 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden glass-nav absolute w-full border-b border-gray-800">
-            <div class="px-4 pt-2 pb-6 space-y-3">
+            <div class="px-4 pt-2 pb-6 space-y-3 text-center">
                 <a href="#inicio" class="block text-gray-300 hover:text-brand-accent font-medium">Inicio</a>
                 <a href="#beneficios" class="block text-gray-300 hover:text-brand-accent font-medium">Beneficios</a>
+                <a href="#revendedores" class="block text-brand-accent font-bold">Oportunidad de Negocio</a>
                 <a href="#precios" class="block text-gray-300 hover:text-brand-accent font-medium">Planes</a>
                 <a href="#descargas" class="block text-gray-300 hover:text-brand-accent font-medium">Apps</a>
                 <button onclick="openInjectorModal()" class="w-full text-center bg-brand-accent text-brand-dark font-bold px-4 py-3 rounded-xl mt-4">
@@ -189,14 +203,82 @@
                     </div>
                 </div>
 
-                <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+                <div class="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-transform duration-300 border border-brand-accent/30 shadow-[0_0_15px_rgba(251,191,36,0.1)]">
                     <img src="images/beneficio-negocio.webp" alt="Revendedores" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <i class="fas fa-handshake text-3xl text-brand-accent mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Oportunidad de Negocio</h3>
-                        <p class="text-gray-400 text-sm">Inicia tu negocio de reventa. Los créditos no tienen fecha de caducidad y te brindamos soporte y asistencia continua para asegurar tu éxito.</p>
+                        <h3 class="text-xl font-bold mb-2 text-brand-accent">Oportunidad de Negocio</h3>
+                        <p class="text-gray-300 text-sm">Inicia tu negocio de reventa. Los créditos <strong>no tienen fecha de caducidad</strong> y te brindamos soporte y asistencia continua para asegurar tu éxito.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN DE REVENDEDORES (Poderosa) -->
+    <section id="revendedores" class="py-24 relative overflow-hidden bg-brand-dark border-y border-gray-800">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-accent opacity-5 rounded-full blur-[150px] pointer-events-none transform translate-x-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-3xl border border-gray-700 p-8 md:p-14 shadow-2xl flex flex-col md:flex-row items-center gap-10">
+                
+                <div class="w-full md:w-3/5 text-center md:text-left">
+                    <span class="inline-block py-1 px-3 rounded-full bg-brand-accent/20 text-brand-accent font-bold text-sm mb-4 border border-brand-accent/30">
+                        <i class="fas fa-rocket mr-2"></i> EMPRENDE HOY
+                    </span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
+                        Conviértete en distribuidor y <span class="gradient-text">multiplica tus ingresos</span>
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                        Únete a nuestra red de revendedores exitosos. Compra créditos al por mayor y adminístralos desde tu propio panel. <strong>Márgenes de ganancia superiores al 100%.</strong>
+                    </p>
+                    
+                    <ul class="space-y-4 mb-10 text-left mx-auto md:mx-0 max-w-md">
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-accent flex items-center justify-center text-brand-dark">
+                                <i class="fas fa-infinity text-sm"></i>
+                            </div>
+                            <span class="font-medium">Tus créditos <strong>NUNCA caducan</strong>. Véndelos a tu ritmo.</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-accent flex items-center justify-center text-brand-dark">
+                                <i class="fas fa-cogs text-sm"></i>
+                            </div>
+                            <span class="font-medium">Panel de control profesional e intuitivo.</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-accent flex items-center justify-center text-brand-dark">
+                                <i class="fas fa-headset text-sm"></i>
+                            </div>
+                            <span class="font-medium">Soporte técnico VIP exclusivo para revendedores.</span>
+                        </li>
+                    </ul>
+                    
+                    <button onclick="activarPanelRevendedor()" class="w-full sm:w-auto px-10 py-5 bg-brand-accent text-brand-dark font-extrabold text-xl rounded-2xl hover:bg-brand-accentHover hover:-translate-y-1 transition-all animate-pulse-glow flex items-center justify-center gap-3 mx-auto md:mx-0">
+                        <i class="fas fa-chart-line"></i> Ver Planes de Negocio
+                    </button>
+                </div>
+                
+                <div class="w-full md:w-2/5 flex justify-center">
+                    <div class="relative w-full max-w-sm">
+                        <!-- Círculo de fondo -->
+                        <div class="absolute inset-0 bg-brand-accent rounded-full opacity-20 blur-3xl"></div>
+                        <!-- Gráfico ilustrativo (Placeholder) -->
+                        <img src="images/beneficio-negocio.webp" alt="Gana Dinero" class="relative z-10 w-full rounded-2xl shadow-2xl border-4 border-gray-800 rotate-3 hover:rotate-0 transition-transform duration-500">
+                        
+                        <!-- Etiqueta flotante -->
+                        <div class="absolute -bottom-6 -left-6 bg-brand-card p-4 rounded-xl border border-brand-accent shadow-xl z-20 flex items-center gap-3">
+                            <div class="w-12 h-12 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center text-2xl">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 font-bold uppercase">Rentabilidad</p>
+                                <p class="text-xl font-extrabold text-white">Alta Demanda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </section>
@@ -210,11 +292,11 @@
             </div>
 
             <!-- Switch Cliente vs Revendedor -->
-            <div class="flex justify-center items-center mb-12 gap-5 bg-brand-card w-fit mx-auto p-2 rounded-full border border-gray-800">
+            <div class="flex justify-center items-center mb-12 gap-5 bg-brand-card w-fit mx-auto p-2 rounded-full border border-gray-800 shadow-lg">
                 <span id="label-user" class="font-bold text-brand-accent px-4 py-2 rounded-full transition-colors cursor-pointer" onclick="document.getElementById('pricing-toggle').click()">Para Usuarios</span>
                 
-                <div class="relative inline-block w-16 align-middle select-none transition duration-200 ease-in">
-                    <input type="checkbox" name="toggle" id="pricing-toggle" class="toggle-checkbox absolute block w-8 h-8 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 top-0 left-0 transition-all duration-300"/>
+                <div class="relative inline-block w-16 h-8 align-middle select-none transition duration-200 ease-in">
+                    <input type="checkbox" name="toggle" id="pricing-toggle" class="toggle-checkbox absolute block w-8 h-8 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 top-0 left-0 transition-transform duration-300 ease-in-out"/>
                     <label for="pricing-toggle" class="toggle-label block overflow-hidden h-8 rounded-full bg-gray-600 cursor-pointer transition-colors duration-300"></label>
                 </div>
                 
@@ -512,7 +594,7 @@
                 lblUser.classList.replace('text-brand-accent', 'text-gray-400');
                 lblRes.classList.replace('text-gray-400', 'text-brand-accent');
                 durSel.classList.add('hidden');
-                document.getElementById('pricing-title').innerHTML = 'Paneles <span class="text-brand-accent">Ilimitados</span>';
+                document.getElementById('pricing-title').innerHTML = 'Paneles de <span class="text-brand-accent">Revendedor</span>';
                 document.getElementById('pricing-desc').innerText = 'Inicia tu propio negocio y obtén grandes ganancias.';
             } else {
                 lblRes.classList.replace('text-brand-accent', 'text-gray-400');
@@ -523,6 +605,15 @@
             }
             renderPricing();
         });
+
+        // Función para botón desde la sección de revendedores
+        function activarPanelRevendedor() {
+            const toggle = document.getElementById('pricing-toggle');
+            if(!toggle.checked) {
+                toggle.click(); // Activa la vista de revendedor
+            }
+            document.getElementById('precios').scrollIntoView({ behavior: 'smooth' });
+        }
 
         document.querySelectorAll('.duration-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
