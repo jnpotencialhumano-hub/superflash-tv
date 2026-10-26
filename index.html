@@ -442,12 +442,13 @@
                 <h2 class="text-3xl font-bold mb-2">Configurar <span class="text-brand-accent">Servicio</span></h2>
                 <p class="text-gray-400 mb-8 text-sm">Ingresa tus credenciales y sube la foto del código QR de tu TV (Duplecast, Ibocast o Smartone).</p>
                 
-                <form id="injector-form" onsubmit="handleFormSubmit(event)" class="space-y-5 relative z-10 text-left">
+                <form id="injector-form" class="space-y-5 relative z-10 text-left">
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-1">Usuario proporcionado</label>
                         <div class="relative">
                             <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                            <input type="text" required placeholder="Ej: user1234" class="w-full pl-11 pr-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white transition-all">
+                            <!-- ID añadido -->
+                            <input type="text" id="iptv-user" required placeholder="Ej: user1234" class="w-full pl-11 pr-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white transition-all">
                         </div>
                     </div>
 
@@ -455,13 +456,15 @@
                         <label class="block text-sm font-medium text-gray-300 mb-1">Contraseña proporcionada</label>
                         <div class="relative">
                             <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                            <input type="password" required placeholder="••••••••" class="w-full pl-11 pr-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white transition-all">
+                            <!-- ID añadido -->
+                            <input type="password" id="iptv-pass" required placeholder="••••••••" class="w-full pl-11 pr-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white transition-all">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-1">App en tu TV</label>
-                        <select class="w-full px-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white appearance-none cursor-pointer">
+                        <!-- ID añadido -->
+                        <select id="iptv-app" class="w-full px-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white appearance-none cursor-pointer">
                             <option value="duplecast">Duplecast</option>
                             <option value="ibocast">Ibocast</option>
                             <option value="smartone">Smartone IPTV</option>
@@ -474,18 +477,19 @@
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                 <i class="fas fa-camera text-3xl text-gray-400 mb-2"></i>
                                 <p class="mb-1 text-sm text-gray-400"><span class="font-semibold text-brand-accent">Haz clic para subir</span> o arrastra</p>
-                                <p class="text-xs text-gray-500">PNG o JPG (Max. 10MB)</p>
+                                <p class="text-xs text-gray-500" id="file-name-display">PNG o JPG (Max. 10MB)</p>
                             </div>
-                            <input type="file" class="hidden" accept="image/*" required>
+                            <!-- ID añadido y evento onchange para mostrar el nombre -->
+                            <input type="file" id="qr-file" class="hidden" accept="image/*" required onchange="document.getElementById('file-name-display').innerText = this.files[0].name">
                         </label>
                     </div>
 
-                    <button type="submit" class="w-full bg-brand-accent text-brand-dark font-bold text-lg py-4 rounded-xl hover:bg-brand-accentHover transition-colors shadow-[0_0_15px_rgba(251,191,36,0.2)] mt-6 flex items-center justify-center gap-2">
+                    <button type="submit" id="submit-btn" class="w-full bg-brand-accent text-brand-dark font-bold text-lg py-4 rounded-xl hover:bg-brand-accentHover transition-colors shadow-[0_0_15px_rgba(251,191,36,0.2)] mt-6 flex items-center justify-center gap-2">
                         <i class="fas fa-bolt"></i> Inyectar Lista Ahora
                     </button>
                 </form>
 
-                <div id="form-message" class="hidden mt-6 p-4 rounded-xl bg-green-900/30 border border-green-500/50 text-green-400 text-sm text-center animate-slide-up"></div>
+                <div id="form-message" class="hidden mt-6 p-4 rounded-xl text-sm text-center animate-slide-up"></div>
             </div>
 
             <div class="w-full lg:w-1/2 bg-brand-dark p-8 md:p-12 flex flex-col justify-center border-l border-gray-800 text-center lg:text-left">
@@ -508,31 +512,26 @@
 
     <script>
         const rawData = [
-            {"NOMBRE_PRODUCTO":"Plan Basic Menusal","DESCRIPCION":"Acceso a la plataoforma para 1 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":12000,"PRECIO ARS":5300,"PRECIO SOLES":"12","PRECIO USD":"3,5","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_UOLUYCGLI7","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/Q549GKAHFC3BS"},
-            {"NOMBRE_PRODUCTO":"Plan Plus Mensual","DESCRIPCION":"Acceso a la plataoforma para 2 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":17500,"PRECIO ARS":7500,"PRECIO SOLES":"17,5","PRECIO USD":"5","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_80GDQ76C4M","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/S8D8DLCLGF6UG"},
-            {"NOMBRE_PRODUCTO":"Plan Premium Mensual","DESCRIPCION":"Acceso a la plataoforma para 3 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":22500,"PRECIO ARS":9800,"PRECIO SOLES":"22,5","PRECIO USD":"6,5","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_UGP9ZY4QDO","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/8WPNHPPJ9NESC"},
-            {"NOMBRE_PRODUCTO":"Plan Ultra Mensual","DESCRIPCION":"Acceso a la plataoforma para 5 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":28000,"PRECIO ARS":12000,"PRECIO SOLES":"27,5","PRECIO USD":"8","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_OG728F4GF0","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/E3RQ2HXTQVM6C"},
-            {"NOMBRE_PRODUCTO":"Plan Basic Trimestral","DESCRIPCION":"Acceso a la plataoforma para 1 dispositivo por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":31500,"PRECIO ARS":13500,"PRECIO SOLES":"31","PRECIO USD":"9","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_7UZGSVNH1X","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/8JDJ7LFDFR7JN"},
-            {"NOMBRE_PRODUCTO":"Plan Plus Trimestral","DESCRIPCION":"Acceso a la plataoforma para 2 dispositivo por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":45500,"PRECIO ARS":19500,"PRECIO SOLES":"45","PRECIO USD":"13","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_9QIAMWPMEM","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/67MDH2T5RB39N"},
-            {"NOMBRE_PRODUCTO":"Plan Premium Trimestral","DESCRIPCION":"Acceso a la plataoforma para 3 dispositivo por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":57500,"PRECIO ARS":24800,"PRECIO SOLES":"57","PRECIO USD":"16,5","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_KXUBW8HNAT","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/MNVU24C9P7A44"},
-            {"NOMBRE_PRODUCTO":"Plan Basic Semestral","DESCRIPCION":"Acceso a la plataoforma para 1 dispositivo por 6 meses y recibe 1 mes gratis total 7 meses","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":57500,"PRECIO ARS":24800,"PRECIO SOLES":"57","PRECIO USD":"16,5","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_7LZDA4MBSS","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/LT774UU643RYN"},
-            {"NOMBRE_PRODUCTO":"Plan Plus Semestral","DESCRIPCION":"Acceso a la plataoforma para 2 dispositivo por 6 meses y recibe 1 mes gratis total 7 meses","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":78500,"PRECIO ARS":33800,"PRECIO SOLES":"77,5","PRECIO USD":"22,5","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_IMX5HU2NVQ","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/9GGE2XB8PTE5S"},
-            {"NOMBRE_PRODUCTO":"Plan Premium Semestral","DESCRIPCION":"Acceso a la plataoforma para 3 dispositivo por 6 meses y recibe 1 mes gratis total 7 meses","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":105000,"PRECIO ARS":45000,"PRECIO SOLES":"103","PRECIO USD":"30","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_V9G04A0L9W","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/UKV524XE9FPF2"},
-            {"NOMBRE_PRODUCTO":"Plan Basic Anual","DESCRIPCION":"Acceso a la plataoforma para 1 dispositivo por 12 meses y recibe2 meses gratis total 14 meses","TIPO DE PLAN":"ANUAL","PRECIO COP":110000,"PRECIO ARS":47300,"PRECIO SOLES":"108","PRECIO USD":"31,5","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_B8AXRH0UMD","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/689YE9Z48LU6W"},
-            {"NOMBRE_PRODUCTO":"Plan Plus Anual","DESCRIPCION":"Acceso a la plataoforma para 2 dispositivo por 12 meses y recibe2 meses gratis total 14 meses","TIPO DE PLAN":"ANUAL","PRECIO COP":136500,"PRECIO ARS":58500,"PRECIO SOLES":"134","PRECIO USD":"39","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_1K9C4OHI1M","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/QLP8EKVCNKSE8"},
-            {"NOMBRE_PRODUCTO":"Plan Premium Anual","DESCRIPCION":"Acceso a la plataoforma para 3 dispositivo por 12 meses y recibe2 meses gratis total 14 meses","TIPO DE PLAN":"ANUAL","PRECIO COP":189000,"PRECIO ARS":81000,"PRECIO SOLES":"186","PRECIO USD":"54","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_RW7Q3SNS64","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/JFHG5TCELFX4Y"},
-            {"NOMBRE_PRODUCTO":"panel 25 creditos","DESCRIPCION":"Panel para revendedor con 25 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":87500,"PRECIO ARS":37500,"PRECIO SOLES":"88","PRECIO USD":"25","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_H9XM8N5TCJ","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/TL5YDN35EAM7C"},
-            {"NOMBRE_PRODUCTO":"panel 50 creditos","DESCRIPCION":"Panel para revendedor con 50 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":140000,"PRECIO ARS":60000,"PRECIO SOLES":"140","PRECIO USD":"40","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_TASC00SZSO","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/NH8SDARU7MJ5W"},
-            {"NOMBRE_PRODUCTO":"panel 70 creditos","DESCRIPCION":"Panel para revendedor con 70 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":175000,"PRECIO ARS":75000,"PRECIO SOLES":"175","PRECIO USD":"50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_443GEPERFA","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/NUVA6KWD6BCS2"},
-            {"NOMBRE_PRODUCTO":"panel 100 creditos","DESCRIPCION":"Panel para revendedor con 100 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":245000,"PRECIO ARS":105000,"PRECIO SOLES":"245","PRECIO USD":"70","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_OOANSQ254T","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/2TMKCFJN5B8HY"},
-            {"NOMBRE_PRODUCTO":"panel 250 creditos","DESCRIPCION":"Panel para revendedor con 250 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":472500,"PRECIO ARS":202500,"PRECIO SOLES":"473","PRECIO USD":"135","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_O7I0A9V849","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/RSXVBFDCYXYZS"},
-            {"NOMBRE_PRODUCTO":"panel 500 creditos","DESCRIPCION":"Panel para revendedor con 500 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":525000,"PRECIO ARS":225000,"PRECIO SOLES":"525","PRECIO USD":"150","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_QJ4VX81Y9F","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/V5B5FW7FLKNY2"},
-            {"NOMBRE_PRODUCTO":"panel 1000 creditos","DESCRIPCION":"Panel para revendedor con 1000 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":700000,"PRECIO ARS":300000,"PRECIO SOLES":"700","PRECIO USD":"200","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_BX6JESHTD1","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/P3GQYA5NKXKXL"},
-            {"NOMBRE_PRODUCTO":"panel 2500 creditos","DESCRIPCION":"Panel para revendedor con 2500 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":980000,"PRECIO ARS":420000,"PRECIO SOLES":"980","PRECIO USD":"280","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_SH7CXQAV9R","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/E7JB3R4B8WNSS"},
-            {"NOMBRE_PRODUCTO":"panel 5000 creditos","DESCRIPCION":"Panel para revendedor con 5000 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":1225000,"PRECIO ARS":525000,"PRECIO SOLES":"1225","PRECIO USD":"350","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_9MDP5SD0RZ","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/JYJCDB3T3YURQ"},
-            {"NOMBRE_PRODUCTO":"panel 10000 creditos","DESCRIPCION":"Panel para revendedor con 10000 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":1400000,"PRECIO ARS":600000,"PRECIO SOLES":"1400","PRECIO USD":"400","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_SGZ3QO5LDN","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/X786XBLY288AL"},
-            {"NOMBRE_PRODUCTO":"panel 15000 creditos","DESCRIPCION":"Panel para revendedor con 15000 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":1575000,"PRECIO ARS":675000,"PRECIO SOLES":"1575","PRECIO USD":"450","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_PSU1J4REB9","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/GB6LYJERCUQB4"},
-            {"NOMBRE_PRODUCTO":"panel 20000 creditos","DESCRIPCION":"Panel para revendedor con 20000 creditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":1680000,"PRECIO ARS":720000,"PRECIO SOLES":"1680","PRECIO USD":"480","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_C2LA6EYA46","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/XBGNFRR9P9HFU"}
+            {"NOMBRE_PRODUCTO":"Plan Basic Menusal","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":12000,"PRECIO ARS":5300,"PRECIO SOLES":12,"PRECIO USD":"3.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_UOLUYCGLI7","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/Q549GKAHFC3BS"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Mensual","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":17500,"PRECIO ARS":7500,"PRECIO SOLES":17.5,"PRECIO USD":"5.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_80GDQ76C4M","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/S8D8DLCLGF6UG"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Mensual","DESCRIPCION":"Acceso a la plataforma para 3 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":22500,"PRECIO ARS":9800,"PRECIO SOLES":22.5,"PRECIO USD":"6.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_UGP9ZY4QDO","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/8WPNHPPJ9NESC"},
+            {"NOMBRE_PRODUCTO":"Plan Ultra Mensual","DESCRIPCION":"Acceso a la plataforma para 5 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":28000,"PRECIO ARS":12000,"PRECIO SOLES":27.5,"PRECIO USD":"8.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_OG728F4GF0","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/E3RQ2HXTQVM6C"},
+            {"NOMBRE_PRODUCTO":"Plan Basic Trimestral","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":31500,"PRECIO ARS":13500,"PRECIO SOLES":31,"PRECIO USD":"9.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_7UZGSVNH1X","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/8JDJ7LFDFR7JN"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Trimestral","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":45500,"PRECIO ARS":19500,"PRECIO SOLES":45,"PRECIO USD":"13.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_9QIAMWPMEM","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/67MDH2T5RB39N"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Trimestral","DESCRIPCION":"Acceso a la plataforma para 3 dispositivos por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":57500,"PRECIO ARS":24800,"PRECIO SOLES":57,"PRECIO USD":"16.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_KXUBW8HNAT","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/MNVU24C9P7A44"},
+            {"NOMBRE_PRODUCTO":"Plan Basic Semestral","DESCRIPCION":"Acceso para 1 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":57500,"PRECIO ARS":24800,"PRECIO SOLES":57,"PRECIO USD":"16.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_7LZDA4MBSS","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/LT774UU643RYN"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Semestral","DESCRIPCION":"Acceso para 2 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":78500,"PRECIO ARS":33800,"PRECIO SOLES":77.5,"PRECIO USD":"22.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_IMX5HU2NVQ","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/9GGE2XB8PTE5S"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Semestral","DESCRIPCION":"Acceso para 3 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":105000,"PRECIO ARS":45000,"PRECIO SOLES":103,"PRECIO USD":"30.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_V9G04A0L9W","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/UKV524XE9FPF2"},
+            {"NOMBRE_PRODUCTO":"Plan Basic Anual","DESCRIPCION":"Acceso para 1 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":110000,"PRECIO ARS":47300,"PRECIO SOLES":108,"PRECIO USD":"31.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_B8AXRH0UMD","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/689YE9Z48LU6W"},
+            {"NOMBRE_PRODUCTO":"Plan Plus Anual","DESCRIPCION":"Acceso para 2 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":136500,"PRECIO ARS":58500,"PRECIO SOLES":134,"PRECIO USD":"39.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_1K9C4OHI1M","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/QLP8EKVCNKSE8"},
+            {"NOMBRE_PRODUCTO":"Plan Premium Anual","DESCRIPCION":"Acceso para 3 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":189000,"PRECIO ARS":81000,"PRECIO SOLES":186,"PRECIO USD":"54.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_RW7Q3SNS64","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/JFHG5TCELFX4Y"},
+            {"NOMBRE_PRODUCTO":"Panel 25 créditos","DESCRIPCION":"Panel inicial para revendedor con 25 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":87500,"PRECIO ARS":37500,"PRECIO SOLES":88,"PRECIO USD":"25.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_H9XM8N5TCJ","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/TL5YDN35EAM7C"},
+            {"NOMBRE_PRODUCTO":"Panel 50 créditos","DESCRIPCION":"Panel para revendedor con 50 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":140000,"PRECIO ARS":60000,"PRECIO SOLES":140,"PRECIO USD":"40.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_TASC00SZSO","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/NH8SDARU7MJ5W"},
+            {"NOMBRE_PRODUCTO":"Panel 70 créditos","DESCRIPCION":"Panel para revendedor con 70 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":175000,"PRECIO ARS":75000,"PRECIO SOLES":175,"PRECIO USD":"50.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_443GEPERFA","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/NUVA6KWD6BCS2"},
+            {"NOMBRE_PRODUCTO":"Panel 100 créditos","DESCRIPCION":"Panel para revendedor con 100 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":245000,"PRECIO ARS":105000,"PRECIO SOLES":245,"PRECIO USD":"70.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_OOANSQ254T","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/2TMKCFJN5B8HY"},
+            {"NOMBRE_PRODUCTO":"Panel 250 créditos","DESCRIPCION":"Panel avanzado con 250 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":472500,"PRECIO ARS":202500,"PRECIO SOLES":473,"PRECIO USD":"135.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_O7I0A9V849","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/RSXVBFDCYXYZS"},
+            {"NOMBRE_PRODUCTO":"Panel 500 créditos","DESCRIPCION":"Panel profesional con 500 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":525000,"PRECIO ARS":225000,"PRECIO SOLES":525,"PRECIO USD":"150.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_QJ4VX81Y9F","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/V5B5FW7FLKNY2"},
+            {"NOMBRE_PRODUCTO":"Panel Master 1000","DESCRIPCION":"Panel Master con 1000 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":700000,"PRECIO ARS":300000,"PRECIO SOLES":700,"PRECIO USD":"200.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_BX6JESHTD1","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/P3GQYA5NKXKXL"}
         ];
 
         const groupedData = { 'MENSUAL': [], 'TRIMESTRAL': [], 'SEMESTRAL': [], 'ANUAL': [], 'ILIMITADO': [] };
@@ -616,11 +615,10 @@
             renderPricing();
         });
 
-        // Función para botón desde la sección de revendedores
         function activarPanelRevendedor() {
             const toggle = document.getElementById('pricing-toggle');
             if(!toggle.checked) {
-                toggle.click(); // Activa la vista de revendedor
+                toggle.click(); 
             }
             document.getElementById('precios').scrollIntoView({ behavior: 'smooth' });
         }
@@ -661,26 +659,85 @@
             if(iframe) iframe.src = iframe.src;
         }
 
-        function handleFormSubmit(e) {
+        // NUEVA LOGICA DE ENVIO A N8N
+        document.getElementById('injector-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const btn = e.target.querySelector('button[type="submit"]');
+            
+            const btn = document.getElementById('submit-btn');
             const ogHtml = btn.innerHTML;
             const msgBox = document.getElementById('form-message');
             
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Inyectando...';
+            // 1. Obtener los valores del formulario
+            const user = document.getElementById('iptv-user').value;
+            const pass = document.getElementById('iptv-pass').value;
+            const app = document.getElementById('iptv-app').value;
+            const fileInput = document.getElementById('qr-file');
+            
+            if (fileInput.files.length === 0) {
+                alert('Por favor, adjunta la foto del código QR.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            
+            // UI de carga
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
             btn.disabled = true;
             btn.classList.add('opacity-70');
             msgBox.classList.add('hidden');
+            msgBox.classList.remove('bg-green-900/30', 'border-green-500/50', 'text-green-400', 'bg-red-900/30', 'border-red-500/50', 'text-red-400');
 
-            setTimeout(() => {
+            try {
+                // 2. Convertir imagen a Base64
+                const base64Image = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
+                    reader.readAsDataURL(file);
+                });
+
+                // 3. Crear el JSON que n8n espera
+                const payload = {
+                    origen: "landing_page", // Identificador para n8n
+                    usuario: user,
+                    password: pass,
+                    aplicacion: app,
+                    imagen_base64: base64Image
+                };
+
+                // 4. Enviar los datos al webhook de n8n (REEMPLAZA ESTA URL CON LA DE TU WEBHOOK DE N8N)
+                // Usualmente es algo como: https://jnwebpro-n8n.5ddkar.easypanel.host/webhook/panel-superflash
+                const webhookUrl = 'https://jnwebpro-n8n.5ddkar.easypanel.host/webhook/panel-superflash'; 
+
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    msgBox.innerHTML = `<strong>¡SOLICITUD ENVIADA CON ÉXITO!</strong><br>Estamos procesando tu lista. Por favor, reinicia la aplicación en tu TV en un par de minutos para ver los canales.`;
+                    msgBox.classList.add('bg-green-900/30', 'border-green-500/50', 'text-green-400');
+                    document.getElementById('injector-form').reset();
+                    document.getElementById('file-name-display').innerText = "PNG o JPG (Max. 10MB)";
+                } else {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+
+            } catch (error) {
+                console.error('Error al enviar:', error);
+                msgBox.innerHTML = `<strong>Ocurrió un error de conexión.</strong><br>Por favor, intenta nuevamente o contacta a soporte.`;
+                msgBox.classList.add('bg-red-900/30', 'border-red-500/50', 'text-red-400');
+            } finally {
+                // Restaurar botón y mostrar mensaje
                 btn.innerHTML = ogHtml;
                 btn.disabled = false;
                 btn.classList.remove('opacity-70');
-                msgBox.innerHTML = `<strong>¡LISTA INYECTADA CON ÉXITO!</strong><br>Por favor, reinicia la aplicación en tu TV para ver los canales.`;
                 msgBox.classList.remove('hidden');
-                e.target.reset();
-            }, 2500);
-        }
+            }
+        });
     </script>
 </body>
 </html>
