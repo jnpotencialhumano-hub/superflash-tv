@@ -11,7 +11,6 @@
     <!-- Meta Tags para WhatsApp y Redes Sociales -->
     <meta property="og:title" content="Superflash TV - Entretenimiento Premium">
     <meta property="og:description" content="Televisión, películas, series y deportes en 4K. Estabilidad garantizada en todos tus dispositivos.">
-    <!-- REEMPLAZA 'https://tudominio.com' CON TU DOMINIO REAL PARA QUE WHATSAPP MUESTRE LA IMAGEN -->
     <meta property="og:image" content="https://tudominio.com/images/banner-hero.webp">
     <meta property="og:url" content="https://tudominio.com/">
     <meta property="og:type" content="website">
@@ -225,7 +224,7 @@
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN DE REVENDEDORES (Poderosa) -->
+    <!-- Sección de Revendedores -->
     <section id="revendedores" class="py-24 relative overflow-hidden bg-brand-dark border-y border-gray-800">
         <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-accent opacity-5 rounded-full blur-[150px] pointer-events-none transform translate-x-1/2"></div>
         
@@ -271,12 +270,8 @@
                 
                 <div class="w-full md:w-2/5 flex justify-center">
                     <div class="relative w-full max-w-sm">
-                        <!-- Círculo de fondo -->
                         <div class="absolute inset-0 bg-brand-accent rounded-full opacity-20 blur-3xl"></div>
-                        <!-- Gráfico ilustrativo -->
                         <img src="images/beneficio-negocio.webp" alt="Gana Dinero" class="relative z-10 w-full rounded-2xl shadow-2xl border-4 border-gray-800 rotate-3 hover:rotate-0 transition-transform duration-500">
-                        
-                        <!-- Etiqueta flotante -->
                         <div class="absolute -bottom-6 -left-6 bg-brand-card p-4 rounded-xl border border-brand-accent shadow-xl z-20 flex items-center gap-3">
                             <div class="w-12 h-12 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center text-2xl">
                                 <i class="fas fa-dollar-sign"></i>
@@ -315,6 +310,7 @@
 
             <!-- Selector de Duración -->
             <div id="duration-selector" class="flex justify-center mb-12 flex-wrap gap-3 animate-fade-in">
+                <button class="duration-btn bg-brand-card text-white hover:bg-gray-700 font-bold py-2.5 px-6 rounded-full border border-gray-700 transition-all" data-duration="TODOS">Todos los Planes</button>
                 <button class="duration-btn active bg-brand-accent text-brand-dark font-bold py-2.5 px-6 rounded-full transition-all" data-duration="MENSUAL">Mensual</button>
                 <button class="duration-btn bg-brand-card text-white hover:bg-gray-700 font-bold py-2.5 px-6 rounded-full border border-gray-700 transition-all" data-duration="TRIMESTRAL">Trimestral</button>
                 <button class="duration-btn bg-brand-card text-white hover:bg-gray-700 font-bold py-2.5 px-6 rounded-full border border-gray-700 transition-all" data-duration="SEMESTRAL">Semestral</button>
@@ -328,7 +324,7 @@
         </div>
     </section>
 
-    <!-- Sección de Descargas (Apps centradas) -->
+    <!-- Sección de Descargas -->
     <section id="descargas" class="py-24 bg-[#0F1423] border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -337,7 +333,6 @@
             </div>
 
             <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-                
                 <a href="https://www.amazon.com/dp/B09KG5K6GV" target="_blank" class="glass-card w-[45%] sm:w-[30%] lg:w-[18%] max-w-[220px] p-6 rounded-2xl text-center hover:-translate-y-2 hover:border-brand-accent transition-all group">
                     <i class="fab fa-amazon text-4xl mb-3 text-gray-300 group-hover:text-brand-accent transition-colors"></i>
                     <h3 class="font-bold text-sm md:text-base">Fire TV</h3>
@@ -383,7 +378,6 @@
                     <span class="text-3xl mb-3 text-[#6f1ab1] font-extrabold block group-hover:text-brand-accent transition-colors">Roku</span>
                     <h3 class="font-bold text-sm md:text-base">Roku TV</h3>
                 </a>
-
             </div>
         </div>
     </section>
@@ -447,7 +441,6 @@
                         <label class="block text-sm font-medium text-gray-300 mb-1">Usuario proporcionado</label>
                         <div class="relative">
                             <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                            <!-- ID añadido -->
                             <input type="text" id="iptv-user" required placeholder="Ej: user1234" class="w-full pl-11 pr-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white transition-all">
                         </div>
                     </div>
@@ -456,18 +449,16 @@
                         <label class="block text-sm font-medium text-gray-300 mb-1">Contraseña proporcionada</label>
                         <div class="relative">
                             <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                            <!-- ID añadido -->
                             <input type="password" id="iptv-pass" required placeholder="••••••••" class="w-full pl-11 pr-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white transition-all">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-1">App en tu TV</label>
-                        <!-- ID añadido -->
                         <select id="iptv-app" class="w-full px-4 py-3 bg-brand-dark/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-brand-accent outline-none text-white appearance-none cursor-pointer">
-                            <option value="duplecast">Duplecast</option>
-                            <option value="ibocast">Ibocast</option>
                             <option value="smartone">Smartone IPTV</option>
+                            <option value="ibocast">Ibocast</option>
+                            <option value="duplecast">Duplecast</option>
                         </select>
                     </div>
 
@@ -477,10 +468,9 @@
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                 <i class="fas fa-camera text-3xl text-gray-400 mb-2"></i>
                                 <p class="mb-1 text-sm text-gray-400"><span class="font-semibold text-brand-accent">Haz clic para subir</span> o arrastra</p>
-                                <p class="text-xs text-gray-500" id="file-name-display">PNG o JPG (Max. 10MB)</p>
+                                <p class="text-xs text-gray-500" id="file-name-display">PNG, JPG o WEBP (Max. 10MB)</p>
                             </div>
-                            <!-- ID añadido y evento onchange para mostrar el nombre -->
-                            <input type="file" id="qr-file" class="hidden" accept="image/*" required onchange="document.getElementById('file-name-display').innerText = this.files[0].name">
+                            <input type="file" id="qr-file" class="hidden" accept="image/png, image/jpeg, image/webp" required onchange="if(this.files.length) document.getElementById('file-name-display').innerText = this.files[0].name">
                         </label>
                     </div>
 
@@ -489,7 +479,7 @@
                     </button>
                 </form>
 
-                <div id="form-message" class="hidden mt-6 p-4 rounded-xl text-sm text-center animate-slide-up"></div>
+                <div id="form-message" class="hidden mt-6 p-4 rounded-xl text-sm text-center animate-slide-up border"></div>
             </div>
 
             <div class="w-full lg:w-1/2 bg-brand-dark p-8 md:p-12 flex flex-col justify-center border-l border-gray-800 text-center lg:text-left">
@@ -509,22 +499,30 @@
         </div>
     </div>
 
-
     <script>
         const rawData = [
-            {"NOMBRE_PRODUCTO":"Plan Basic Menusal","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":12000,"PRECIO ARS":5300,"PRECIO SOLES":12,"PRECIO USD":"3.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_UOLUYCGLI7","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/Q549GKAHFC3BS"},
+            // PLANES MENSUALES (4)
+            {"NOMBRE_PRODUCTO":"Plan Basic Mensual","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":12000,"PRECIO ARS":5300,"PRECIO SOLES":12,"PRECIO USD":"3.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_UOLUYCGLI7","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/Q549GKAHFC3BS"},
             {"NOMBRE_PRODUCTO":"Plan Plus Mensual","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":17500,"PRECIO ARS":7500,"PRECIO SOLES":17.5,"PRECIO USD":"5.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_80GDQ76C4M","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/S8D8DLCLGF6UG"},
             {"NOMBRE_PRODUCTO":"Plan Premium Mensual","DESCRIPCION":"Acceso a la plataforma para 3 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":22500,"PRECIO ARS":9800,"PRECIO SOLES":22.5,"PRECIO USD":"6.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_UGP9ZY4QDO","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/8WPNHPPJ9NESC"},
             {"NOMBRE_PRODUCTO":"Plan Ultra Mensual","DESCRIPCION":"Acceso a la plataforma para 5 dispositivos por un mes","TIPO DE PLAN":"MENSUAL","PRECIO COP":28000,"PRECIO ARS":12000,"PRECIO SOLES":27.5,"PRECIO USD":"8.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_OG728F4GF0","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/E3RQ2HXTQVM6C"},
+            
+            // PLANES TRIMESTRALES (3)
             {"NOMBRE_PRODUCTO":"Plan Basic Trimestral","DESCRIPCION":"Acceso a la plataforma para 1 dispositivo por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":31500,"PRECIO ARS":13500,"PRECIO SOLES":31,"PRECIO USD":"9.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_7UZGSVNH1X","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/8JDJ7LFDFR7JN"},
             {"NOMBRE_PRODUCTO":"Plan Plus Trimestral","DESCRIPCION":"Acceso a la plataforma para 2 dispositivos por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":45500,"PRECIO ARS":19500,"PRECIO SOLES":45,"PRECIO USD":"13.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_9QIAMWPMEM","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/67MDH2T5RB39N"},
             {"NOMBRE_PRODUCTO":"Plan Premium Trimestral","DESCRIPCION":"Acceso a la plataforma para 3 dispositivos por 3 meses","TIPO DE PLAN":"TRIMESTRAL","PRECIO COP":57500,"PRECIO ARS":24800,"PRECIO SOLES":57,"PRECIO USD":"16.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_KXUBW8HNAT","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/MNVU24C9P7A44"},
+            
+            // PLANES SEMESTRALES (3)
             {"NOMBRE_PRODUCTO":"Plan Basic Semestral","DESCRIPCION":"Acceso para 1 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":57500,"PRECIO ARS":24800,"PRECIO SOLES":57,"PRECIO USD":"16.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_7LZDA4MBSS","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/LT774UU643RYN"},
             {"NOMBRE_PRODUCTO":"Plan Plus Semestral","DESCRIPCION":"Acceso para 2 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":78500,"PRECIO ARS":33800,"PRECIO SOLES":77.5,"PRECIO USD":"22.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_IMX5HU2NVQ","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/9GGE2XB8PTE5S"},
             {"NOMBRE_PRODUCTO":"Plan Premium Semestral","DESCRIPCION":"Acceso para 3 disp. 6 meses + 1 mes GRATIS (7 meses)","TIPO DE PLAN":"SEMESTRAL","PRECIO COP":105000,"PRECIO ARS":45000,"PRECIO SOLES":103,"PRECIO USD":"30.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_V9G04A0L9W","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/UKV524XE9FPF2"},
+            
+            // PLANES ANUALES (3)
             {"NOMBRE_PRODUCTO":"Plan Basic Anual","DESCRIPCION":"Acceso para 1 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":110000,"PRECIO ARS":47300,"PRECIO SOLES":108,"PRECIO USD":"31.50","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_B8AXRH0UMD","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/689YE9Z48LU6W"},
             {"NOMBRE_PRODUCTO":"Plan Plus Anual","DESCRIPCION":"Acceso para 2 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":136500,"PRECIO ARS":58500,"PRECIO SOLES":134,"PRECIO USD":"39.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_1K9C4OHI1M","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/QLP8EKVCNKSE8"},
             {"NOMBRE_PRODUCTO":"Plan Premium Anual","DESCRIPCION":"Acceso para 3 disp. 12 meses + 2 meses GRATIS (14 meses)","TIPO DE PLAN":"ANUAL","PRECIO COP":189000,"PRECIO ARS":81000,"PRECIO SOLES":186,"PRECIO USD":"54.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_RW7Q3SNS64","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/JFHG5TCELFX4Y"},
+            
+            // PLANES RESELLER / PANELES ILIMITADOS (7)
             {"NOMBRE_PRODUCTO":"Panel 25 créditos","DESCRIPCION":"Panel inicial para revendedor con 25 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":87500,"PRECIO ARS":37500,"PRECIO SOLES":88,"PRECIO USD":"25.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_H9XM8N5TCJ","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/TL5YDN35EAM7C"},
             {"NOMBRE_PRODUCTO":"Panel 50 créditos","DESCRIPCION":"Panel para revendedor con 50 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":140000,"PRECIO ARS":60000,"PRECIO SOLES":140,"PRECIO USD":"40.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_TASC00SZSO","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/NH8SDARU7MJ5W"},
             {"NOMBRE_PRODUCTO":"Panel 70 créditos","DESCRIPCION":"Panel para revendedor con 70 créditos","TIPO DE PLAN":"ILIMITADO","PRECIO COP":175000,"PRECIO ARS":75000,"PRECIO SOLES":175,"PRECIO USD":"50.00","Link Pago Bold":"https:\/\/checkout.bold.co\/payment\/LNK_443GEPERFA","LInk pago Paypal":"https:\/\/www.paypal.com\/ncp\/payment\/NUVA6KWD6BCS2"},
@@ -550,13 +548,38 @@
             const container = document.getElementById('pricing-container');
             container.innerHTML = ''; 
             
-            let plansToRender = currentMode === 'user' ? groupedData[currentDuration] : groupedData['ILIMITADO'];
+            let plansToRender = [];
+
+            if (currentMode === 'user') {
+                if (currentDuration === 'TODOS') {
+                    // Muestra absolutamente todos los planes de usuario (13 en total)
+                    plansToRender = [
+                        ...groupedData['MENSUAL'],
+                        ...groupedData['TRIMESTRAL'],
+                        ...groupedData['SEMESTRAL'],
+                        ...groupedData['ANUAL']
+                    ];
+                } else {
+                    plansToRender = groupedData[currentDuration] || [];
+                }
+            } else {
+                // Muestra absolutamente todos los paneles de revendedor (7 en total)
+                plansToRender = groupedData['ILIMITADO'] || [];
+            }
 
             plansToRender.forEach((plan, index) => {
-                const isHighlight = (index === 1 && currentMode === 'user') || (index === 2 && currentMode === 'reseller');
+                const isHighlight = (index === 1 && currentMode === 'user' && currentDuration !== 'TODOS') || 
+                                    (index === 2 && currentMode === 'reseller');
+                                    
                 const borderClass = isHighlight ? 'border-brand-accent shadow-[0_0_20px_rgba(251,191,36,0.15)] scale-[1.02]' : 'border-gray-700 hover:border-gray-500';
                 const badgeBg = isHighlight ? 'bg-brand-accent text-brand-dark' : 'bg-gray-700 text-white';
-                let badgeText = currentMode === 'user' ? plan['NOMBRE_PRODUCTO'].split(' ')[1] || 'Plan' : 'Créditos';
+                
+                let badgeText = '';
+                if (currentMode === 'user') {
+                    badgeText = `${plan['NOMBRE_PRODUCTO'].split(' ')[1] || 'Plan'} (${plan['TIPO DE PLAN']})`;
+                } else {
+                    badgeText = 'Créditos';
+                }
 
                 container.innerHTML += `
                     <div class="glass-card w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(25%-1.125rem)] max-w-[320px] rounded-3xl p-6 border transition-all duration-300 flex flex-col items-center text-center animate-fade-in ${borderClass}">
@@ -593,6 +616,7 @@
             });
         }
 
+        // Cambio entre Vista de Clientes y Revendedores
         document.getElementById('pricing-toggle').addEventListener('change', (e) => {
             currentMode = e.target.checked ? 'reseller' : 'user';
             const lblUser = document.getElementById('label-user');
@@ -623,21 +647,26 @@
             document.getElementById('precios').scrollIntoView({ behavior: 'smooth' });
         }
 
+        // Filtro de duraciones
         document.querySelectorAll('.duration-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.duration-btn').forEach(b => {
                     b.classList.replace('bg-brand-accent', 'bg-brand-card');
                     b.classList.replace('text-brand-dark', 'text-white');
+                    b.classList.remove('active');
                 });
                 e.target.classList.replace('bg-brand-card', 'bg-brand-accent');
                 e.target.classList.replace('text-white', 'text-brand-dark');
+                e.target.classList.add('active');
                 currentDuration = e.target.getAttribute('data-duration');
                 renderPricing();
             });
         });
 
+        // Inicializar renderizado de precios
         renderPricing(); 
 
+        // Menú móvil
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -645,6 +674,7 @@
             el.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
+        // Control Modal
         const injModal = document.getElementById('injector-modal');
         function openInjectorModal() {
             injModal.classList.remove('hidden');
@@ -659,7 +689,7 @@
             if(iframe) iframe.src = iframe.src;
         }
 
-        // NUEVA LOGICA DE ENVIO A N8N
+        // CONTROL Y ENVÍO A N8N
         document.getElementById('injector-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -667,28 +697,44 @@
             const ogHtml = btn.innerHTML;
             const msgBox = document.getElementById('form-message');
             
-            // 1. Obtener los valores del formulario
-            const user = document.getElementById('iptv-user').value;
-            const pass = document.getElementById('iptv-pass').value;
-            const app = document.getElementById('iptv-app').value;
+            // 1. Obtener y sanitizar valores del formulario
+            const user = document.getElementById('iptv-user').value.trim();
+            const pass = document.getElementById('iptv-pass').value.trim();
+            const app = document.getElementById('iptv-app').value.toLowerCase().trim();
             const fileInput = document.getElementById('qr-file');
             
+            // 2. Validaciones locales previas al envío
+            if (!user || !pass) {
+                alert('Por favor, ingresa tu usuario y contraseña.');
+                return;
+            }
+
             if (fileInput.files.length === 0) {
-                alert('Por favor, adjunta la foto del código QR.');
+                alert('Por favor, adjunta la foto del código QR de tu televisor.');
                 return;
             }
 
             const file = fileInput.files[0];
-            
-            // UI de carga
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+
+            if (file.size <= 0) {
+                alert('El archivo seleccionado está vacío o corrupto.');
+                return;
+            }
+
+            if (file.size > 10 * 1024 * 1024) {
+                alert('El archivo no debe exceder los 10MB.');
+                return;
+            }
+
+            // 3. Estado visual de carga
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando tu activación...';
             btn.disabled = true;
             btn.classList.add('opacity-70');
             msgBox.classList.add('hidden');
-            msgBox.classList.remove('bg-green-900/30', 'border-green-500/50', 'text-green-400', 'bg-red-900/30', 'border-red-500/50', 'text-red-400');
+            msgBox.className = 'hidden mt-6 p-4 rounded-xl text-sm text-center animate-slide-up border';
 
             try {
-                // 2. Convertir imagen a Base64
+                // 4. Conversión y lectura como Data URL Base64 completa
                 const base64Image = await new Promise((resolve, reject) => {
                     const reader = new FileReader();
                     reader.onload = () => resolve(reader.result);
@@ -696,18 +742,17 @@
                     reader.readAsDataURL(file);
                 });
 
-                // 3. Crear el JSON que n8n espera
+                // 5. Estructura exacta del Payload JSON solicitado
                 const payload = {
-                    origen: "landing_page", // Identificador para n8n
+                    origen: "landing_page",
                     usuario: user,
                     password: pass,
                     aplicacion: app,
                     imagen_base64: base64Image
                 };
 
-                // 4. Enviar los datos al webhook de n8n (REEMPLAZA ESTA URL CON LA DE TU WEBHOOK DE N8N)
-                // Usualmente es algo como: https://jnwebpro-n8n.5ddkar.easypanel.host/webhook/panel-superflash
-                const webhookUrl = 'https://jnwebpro-n8n.5ddkar.easypanel.host/webhook/panel-superflash'; 
+                // 6. Endpoint de integración con n8n
+                const webhookUrl = 'https://jnwebpro-n8n.5ddkar.easypanel.host/webhook/panel-superflash?instancia=573203962798';
 
                 const response = await fetch(webhookUrl, {
                     method: 'POST',
@@ -718,20 +763,19 @@
                 });
 
                 if (response.ok) {
-                    msgBox.innerHTML = `<strong>¡SOLICITUD ENVIADA CON ÉXITO!</strong><br>Estamos procesando tu lista. Por favor, reinicia la aplicación en tu TV en un par de minutos para ver los canales.`;
+                    msgBox.innerHTML = `<strong>¡SOLICITUD ENVIADA CON ÉXITO!</strong><br>Estamos procesando la activación en tu aplicación. Por favor, reiníciala en tu televisor en unos momentos.`;
                     msgBox.classList.add('bg-green-900/30', 'border-green-500/50', 'text-green-400');
                     document.getElementById('injector-form').reset();
-                    document.getElementById('file-name-display').innerText = "PNG o JPG (Max. 10MB)";
+                    document.getElementById('file-name-display').innerText = "PNG, JPG o WEBP (Max. 10MB)";
                 } else {
-                    throw new Error('Error en la respuesta del servidor');
+                    throw new Error(`Error en el servidor: ${response.status}`);
                 }
 
             } catch (error) {
-                console.error('Error al enviar:', error);
-                msgBox.innerHTML = `<strong>Ocurrió un error de conexión.</strong><br>Por favor, intenta nuevamente o contacta a soporte.`;
+                console.error('Error al enviar la solicitud:', error);
+                msgBox.innerHTML = `<strong>Ocurrió un error al procesar tu solicitud.</strong><br>Por favor verifica tu conexión o contacta a soporte técnico.`;
                 msgBox.classList.add('bg-red-900/30', 'border-red-500/50', 'text-red-400');
             } finally {
-                // Restaurar botón y mostrar mensaje
                 btn.innerHTML = ogHtml;
                 btn.disabled = false;
                 btn.classList.remove('opacity-70');
